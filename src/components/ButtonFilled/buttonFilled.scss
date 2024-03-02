@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.buttonFilled {
+    width: 160px;
+    height: 48px;
+    background-color: $orange-dark-color;
+    color: $white-light-color;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: $text-font;
+}
+
+.buttonFilled:hover {
+    background-color: $orange-light-color;
+}
