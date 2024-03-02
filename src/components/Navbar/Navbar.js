@@ -1,15 +1,30 @@
 import React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.scss'
+import Products from '../Products/Products'
 
 export default function Navbar() {
+
+  const [active, setActive] = useState(false)
+
+  const toggleActive = () => {
+    setActive(!active)
+  }
+
   return (
     <div className='navbar'>
 
       <div className="navbar__container">
 
-        <div className="navbar__hamburger">
+        <div className={active ? "navbar__hamburger active" : "navbar__hamburger"} onClick={toggleActive}>
           <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="evenodd"><path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z"/></g></svg>
+        </div>
+
+        <div className={active ? "navbar__close active" : "navbar__close"} onClick={toggleActive}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="#FFF" viewBox="0 0 30 30">
+          <path d="M 7 4 C 6.744125 4 6.4879687 4.0974687 6.2929688 4.2929688 L 4.2929688 6.2929688 C 3.9019687 6.6839688 3.9019687 7.3170313 4.2929688 7.7070312 L 11.585938 15 L 4.2929688 22.292969 C 3.9019687 22.683969 3.9019687 23.317031 4.2929688 23.707031 L 6.2929688 25.707031 C 6.6839688 26.098031 7.3170313 26.098031 7.7070312 25.707031 L 15 18.414062 L 22.292969 25.707031 C 22.682969 26.098031 23.317031 26.098031 23.707031 25.707031 L 25.707031 23.707031 C 26.098031 23.316031 26.098031 22.682969 25.707031 22.292969 L 18.414062 15 L 25.707031 7.7070312 C 26.098031 7.3170312 26.098031 6.6829688 25.707031 6.2929688 L 23.707031 4.2929688 C 23.316031 3.9019687 22.682969 3.9019687 22.292969 4.2929688 L 15 11.585938 L 7.7070312 4.2929688 C 7.5115312 4.0974687 7.255875 4 7 4 z"></path>
+          </svg>
         </div>
 
         <Link className='navbar__logo' to={"/"}>
@@ -34,7 +49,12 @@ export default function Navbar() {
         <button className='navbar__cart'>
           <svg width="23" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M8.625 15.833c1.132 0 2.054.935 2.054 2.084 0 1.148-.922 2.083-2.054 2.083-1.132 0-2.054-.935-2.054-2.083 0-1.15.922-2.084 2.054-2.084zm9.857 0c1.132 0 2.054.935 2.054 2.084 0 1.148-.922 2.083-2.054 2.083-1.132 0-2.053-.935-2.053-2.083 0-1.15.92-2.084 2.053-2.084zm-9.857 1.39a.69.69 0 00-.685.694.69.69 0 00.685.694.69.69 0 00.685-.694.69.69 0 00-.685-.695zm9.857 0a.69.69 0 00-.684.694.69.69 0 00.684.694.69.69 0 00.685-.694.69.69 0 00-.685-.695zM4.717 0c.316 0 .59.215.658.517l.481 2.122h16.47a.68.68 0 01.538.262c.127.166.168.38.11.579l-2.695 9.236a.672.672 0 01-.648.478H7.41a.667.667 0 00-.673.66c0 .364.303.66.674.66h12.219c.372 0 .674.295.674.66 0 .364-.302.66-.674.66H7.412c-1.115 0-2.021-.889-2.021-1.98 0-.812.502-1.511 1.218-1.816L4.176 1.32H.674A.667.667 0 010 .66C0 .296.302 0 .674 0zm16.716 3.958H6.156l1.797 7.917h11.17l2.31-7.917z" fill="#FFF" fill-rule="nonzero"/></svg>
         </button>
-        
+
+      </div>
+
+      <div className={active ? "navbar-overlay active" : "navbar-overlay"}></div>
+      <div className={active ? "navbar-products active" : "navbar-products"} onClick={toggleActive}>
+        <Products />
       </div>
 
     </div>

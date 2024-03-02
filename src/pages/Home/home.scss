@@ -12,7 +12,17 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    height: 39rem;
+    padding-bottom: 6px;
+    margin-bottom: 140px;
+
+
+    @include tablet {
+        margin-bottom: 90px;
+    }
+
+    @include mobile {
+        margin-bottom: 70px;
+    }
 }
 
 .hero-picture {
@@ -53,7 +63,7 @@
     padding: 0 40px;
     opacity: 0;
     animation: textFade 2s ease-in forwards;
-    z-index: 99;
+    z-index: 2;
 
     @include desktop {
         width: 50%;

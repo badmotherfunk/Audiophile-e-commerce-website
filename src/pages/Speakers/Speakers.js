@@ -1,8 +1,8 @@
 import React from 'react'
 import './speakers.scss'
 
-export default function Speaker() {
+export default function Speakers() {
   return (
-    <div>Speaker</div>
+    <div>Speakers</div>
   )
 }

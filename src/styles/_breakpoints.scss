@@ -23,6 +23,12 @@ $breakpoints: (
     }
 }
 
+@mixin min-tablet {
+    @media screen and (min-width: map-get($breakpoints, "tablet")) {
+        @content;
+    }
+}
+
 @mixin tablet {
     @media screen and (max-width: map-get($breakpoints, "tablet")) {
         @content;
