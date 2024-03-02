@@ -5,7 +5,7 @@ import ButtonFilled from '../../components/ButtonFilled/ButtonFilled'
 export default function Home() {
   return (
     <header className='home-header'>
-      <img src='/starter-code/assets/home/desktop/image-hero.jpg' alt="mark-two headphones" />
+
       <div className="hero-container">
         <div className="hero-content">
           <p className='hero-title'>NEW PRODUCT</p>
@@ -14,6 +14,13 @@ export default function Home() {
           <ButtonFilled />
         </div>
       </div>
+
+      <picture>
+        <source media="(max-width: 480px)" srcset={'/starter-code/assets/home/mobile/image-header.jpg'} />
+        <source media="(max-width: 1024px)" srcset={'/starter-code/assets/home/tablet/image-header.jpg'} />
+        <img src='/starter-code/assets/home/desktop/image-hero.jpg' alt="mark-two headphones" />
+      </picture>
+
     </header>
   )
 }

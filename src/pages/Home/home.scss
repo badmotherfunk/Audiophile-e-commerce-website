@@ -4,17 +4,29 @@
 .home-header {
     width: 100%;
     background-color: #101010f5;
-    height: fit-content;
+    height: auto;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     position: relative;
     display: flex;
     flex-direction: row;
+    height: 39rem;
+}
+
+picture {
+    width: 100%;
+    margin-top: -90px;
 }
 
 .home-header img {
     width: 100%;
-    margin-top: -70px;
+    height: 100%;
+    object-fit: contain;
+    max-width: 1400px;
+
+    @include mobile {
+        width: 100%;
+    }
 }
 
 .hero-container {
@@ -24,34 +36,94 @@
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 1190px;
-    margin: 0 40px;
-}
+    padding: 0 40px;
 
+    @include desktop {
+        width: 50%;
+        margin: 0;
+    }
+
+    @include tablet {
+        padding: 0;
+    }
+
+    @include mobile {
+        width: 100%;
+    }
+}
 
 .hero-content {
     display: flex;
     flex-direction: column;
     gap: 35px;
     width: 50%;
-    z-index: 1;
+
+    @include desktop {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 30px;
+    }
+
+    @include tablet {
+        gap: 20px;
+    }
+
+    @include mobile {
+        gap: 10px;
+    }
+
 }
 
 .hero-title,
 .hero-product,
 .hero-description {
     text-align: left;
+
+    @include desktop {
+        text-align: center;
+    }
 }
 
 .hero-title {
     font-size: 18px;
     letter-spacing: 12px;
     color: #ffffff5e;
+
+    @include tablet {
+        font-size: 14px;
+    }
+
+    @include mobile {
+        font-size: 16px;
+    }
 }
 .hero-product {
     color: $white-light-color;
+
+    @include mobile {
+        font-size: 42px;
+    }
 }
 .hero-description {
     font-size: 18px;
     color: #ffffffad;
     width: 80%;
+
+    @include desktop {
+        width: 380px;
+        font-size: 16px;
+    }
+
+    @include tablet {
+        width: 360px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    @include mobile {
+        width: 80%;
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
 }

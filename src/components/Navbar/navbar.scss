@@ -1,9 +1,10 @@
 @import '../../styles/variables';
+@import '../../styles/breakpoints.scss';
 
 .navbar {
     position: relative;
     width: 100%;
-    background-color: $black-light-color;
+    background-color: #191919;
     z-index: 99;
     padding: 0 40px;
 
@@ -13,15 +14,24 @@
     max-width: 69.375rem;
     height: 5.625rem;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     position: relative;
     margin: 0 auto;
     border-bottom: 1px solid rgba(250, 250, 250, 0.164);
     }
+
+    &__hamburger {
+        display: none;
+        cursor: pointer;
+
+        @include tablet {
+            display: block;
+        }
+    }
     
     &__logo {
-        position: absolute;
-        left: 0;
+        display: flex;
+
     }
 
     &__items {
@@ -32,14 +42,17 @@
         font-size: 14px;
         letter-spacing: 2px;
         font-weight: 600;
+      
+        @include tablet {
+            display: none;
+        }
     }
 
     & li:hover {
         color: $orange-dark-color;
     }
 
-    &__cart {
-        position: absolute;
-        right: 0;
-    }
+    // &__cart {
+
+    // }
 }
