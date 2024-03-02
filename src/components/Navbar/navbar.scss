@@ -25,7 +25,7 @@
         cursor: pointer;
 
         @include tablet {
-            display: block;
+            display: flex;
         }
     }
     
@@ -52,7 +52,7 @@
         color: $orange-dark-color;
     }
 
-    // &__cart {
-
-    // }
+    &__cart {
+        display: flex;
+    }
 }

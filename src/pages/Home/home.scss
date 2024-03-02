@@ -1,6 +1,8 @@
 @import '../../styles/variables';
 @import '../../styles/breakpoints';
 
+// HEADER
+
 .home-header {
     width: 100%;
     background-color: #101010f5;
@@ -13,7 +15,7 @@
     height: 39rem;
 }
 
-picture {
+.hero-picture {
     width: 100%;
     margin-top: -90px;
 }
@@ -125,5 +127,17 @@ picture {
         width: 80%;
         font-size: 17px;
         margin-bottom: 20px;
+    }
+}
+
+
+// MAIN
+
+
+main {
+    padding: 0 100px;
+
+    @include tablet {
+        padding: 0 40px;
     }
 }
