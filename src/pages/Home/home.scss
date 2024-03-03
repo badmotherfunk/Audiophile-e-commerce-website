@@ -6,7 +6,7 @@
 .home-header {
     width: 100%;
     background-color: #101010f5;
-    height: auto;
+    height: 38rem;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     position: relative;
@@ -14,6 +14,7 @@
     flex-direction: row;
     padding-bottom: 6px;
     margin-bottom: 140px;
+
 
 
     @include tablet {
@@ -37,7 +38,7 @@
     object-fit: contain;
     max-width: 1400px;
     opacity: 0;
-    animation: pictureFade 1s forwards;
+    animation: pictureFade 2s 0.3s forwards;
 
     @include mobile {
         width: 100%;
@@ -62,7 +63,7 @@
     max-width: 1190px;
     padding: 0 40px;
     opacity: 0;
-    animation: textFade 2s ease-in forwards;
+    animation: textFade 2s 1s ease-in forwards;
     z-index: 2;
 
     @include desktop {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.scss'
 import Products from '../Products/Products'
@@ -13,9 +14,9 @@ export default function Navbar() {
   }
 
   return (
-    <div className='navbar'>
+    <div className='navbar' >
 
-      <div className="navbar__container">
+      <div className="navbar__container" >
 
         <div className={active ? "navbar__hamburger active" : "navbar__hamburger"} onClick={toggleActive}>
           <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="evenodd"><path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z"/></g></svg>
