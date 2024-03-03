@@ -66,7 +66,7 @@ export default function Navbar() {
       </div>
 
       <div className={active ? "navbar-overlay active" : "navbar-overlay"}></div>
-      <div ref={modalRef} className={active ? "navbar-products active" : "navbar-products"}  onClick={toggleActive}>
+      <div ref={modalRef} className={active ? "navbar-products active" : "navbar-products"}>
         <Products />
       </div>
 
