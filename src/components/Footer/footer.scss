@@ -80,6 +80,9 @@ footer {
         padding: 25px 0 10px 0;
     }
 }
+.navbar-items-footer a:hover {
+    color: $orange-dark-color;
+}
 
 .footer-description-container {
     display: flex;
@@ -161,8 +164,4 @@ footer {
 
 .footer-links:hover {
     fill: $orange-dark-color;
-}
-
-.navbar__items a:hover {
-    color: $orange-dark-color;
 }
