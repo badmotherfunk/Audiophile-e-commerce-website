@@ -3,6 +3,7 @@ import './home.scss'
 import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
 import ButtonTransparent from '../../components/ButtonTransparent/ButtonTransparent';
 import Products from '../../components/Products/Products';
+import Branding from '../../components/Branding/Branding';
 
 export default function Home() {
   return (
@@ -63,7 +64,28 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
+            <div className="third-product">
+
+              <div className="third-product-picture">
+                <picture>
+                  <source media="(max-width: 480px)" srcset={'/starter-code/assets/home/mobile/image-earphones-yx1.jpg'} />
+                  <source media="(max-width: 768px)" srcset={'/starter-code/assets/home/tablet/image-earphones-yx1.jpg'} />
+                  <img src={'/starter-code/assets/home/desktop/image-earphones-yx1.jpg'} alt="" />
+                </picture>
+              </div>
+
+              <div className="third-product-content-container">
+                <div className="third-product-content">
+                  <p className='third-product-title'>YX1 EARPHONES</p>
+                  <ButtonTransparent />
+                </div>
+              </div>
+
+            </div>          
+          </section>
+          <section className='branding-section'>
+            <Branding />
           </section>
       </main>
     </>

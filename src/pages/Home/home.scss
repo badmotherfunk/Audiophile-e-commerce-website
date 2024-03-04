@@ -172,6 +172,9 @@
 
 
 main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 0 100px;
 
     @include desktop {
@@ -198,19 +201,22 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 100px 0;
+    padding-top: 100px;
     gap: 50px;
 
     @include desktop {
-        padding: 60px 0;
+        padding-top: 60px;
+        gap: 40px;
     }
 
     @include tablet {
-        padding: 40px 0;
+        padding-top: 40px;
+        gap: 30px;
     }
 
     @include mobile {
-        padding: 80px 0;
+        padding-top: 80px;
+        gap: 25px;
     }
 }
 
@@ -443,7 +449,7 @@ main {
         background: url(../../../public/starter-code/assets/home/mobile/image-speaker-zx7.jpg);
         background-repeat: no-repeat;
         background-position: right;
-        height: 380px;  
+        height: 350px;  
         background-size: 430px;
     }
 }
@@ -457,11 +463,12 @@ main {
 
     @include tablet {
         width: 38%;
+        margin-left: 20px;
     }
 
     @include mobile {
         width: 60%;
-        margin-left: 20px;
+        margin-left: 15px;
     }
 }
 
@@ -481,6 +488,106 @@ main {
     @include mobile {
         font-size: 27px;
     }
-
 }
+
+
+// THIRD PRODUCT
+
+.third-product {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1130px;
+    height: auto;
+    gap: 30px;
+
+    @include desktop {
+        gap: 20px;
+    }
+
+    @include tablet {
+        gap: 10px;
+    }
+
+    @include mobile {
+        flex-direction: column;
+        gap: 25px;
+    }
+}
+
+.third-product-picture {
+    width: 50%;
+    height: 320px;
+
+    @include mobile {
+        width: 100%;
+        height: 210px;
+    }
+}
+
+.third-product-picture picture {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.third-product-picture img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.third-product-content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    background-color: $grey-dark-color;
+    height: 320px;
+    border-radius: 10px;
+
+    @include mobile {
+        width: 100%;
+        height: 210px;
+    }
+}
+
+.third-product-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    width: 65%;
+
+    @include tablet {
+        width: 85%;
+    }
+}
+
+.third-product-title {
+    text-align: left;
+    font-size: 29px;
+    font-weight: bold;
+}
+
+
+// SECTION BRANDING
+
+.branding-section {
+    display: flex;
+    justify-content: center;
+    padding: 170px 0;
+
+    @include desktop {
+        padding: 130px 0;
+    }
+
+    @include tablet {
+        padding: 100px 0;
+    }
+}
+
+
 
