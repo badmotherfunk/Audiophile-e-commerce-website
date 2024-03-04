@@ -38,7 +38,7 @@
     object-fit: contain;
     max-width: 1400px;
     opacity: 0;
-    animation: pictureFade 2s 0.3s forwards;
+    animation: pictureFade 1.8s 0.3s forwards;
 
     @include mobile {
         width: 100%;
@@ -63,7 +63,7 @@
     max-width: 1190px;
     padding: 0 40px;
     opacity: 0;
-    animation: textFade 2s 1s ease-in forwards;
+    animation: textFade 1.2s 1s ease-in forwards;
     z-index: 2;
 
     @include desktop {
