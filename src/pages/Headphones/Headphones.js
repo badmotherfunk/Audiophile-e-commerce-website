@@ -23,7 +23,7 @@ export default function Headphones() {
         <div className="page-product-content">
           {headphonesArray.map((headphone, index) => (
             <CardProduct props={headphone} key={index} id={index}/>
-            ))}
+          ))}
         </div>
       
         <Products />
