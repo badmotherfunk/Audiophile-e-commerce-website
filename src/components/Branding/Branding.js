@@ -5,8 +5,8 @@ export default function Branding() {
   return (
     <div className='branding'>
         <picture className="branding__picture__container">
-            <source media="(max-width: 480px)" srcset={'/starter-code/assets/shared/mobile/image-best-gear.jpg'} />
-            <source media="(max-width: 768px)" srcset={'/starter-code/assets/shared/tablet/image-best-gear.jpg'} />
+            <source media="(max-width: 480px)" srcSet={'/starter-code/assets/shared/mobile/image-best-gear.jpg'} />
+            <source media="(max-width: 768px)" srcSet={'/starter-code/assets/shared/tablet/image-best-gear.jpg'} />
             <img src={'/starter-code/assets/shared/desktop/image-best-gear.jpg'} alt="audiophile branding" />
         </picture>
 

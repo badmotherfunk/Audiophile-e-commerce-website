@@ -10,15 +10,22 @@
     max-width: 1130px;
     height: auto;
     gap: 20px;
+    padding-bottom: 170px;
+
+    @include desktop {
+        padding-bottom: 140px;
+    }
 
     @include tablet {
         flex-direction: column;
         gap: 55px;
+        padding-bottom: 120px;
     }
 
     @include mobile {
         gap: 35px;
     }
+
 
     &__picture__container {
         display: flex;

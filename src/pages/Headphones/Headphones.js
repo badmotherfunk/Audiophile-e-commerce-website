@@ -1,8 +1,44 @@
 import React from 'react'
 import './headphones.scss'
+import data from '../../data.json'
+import CardProduct from '../../components/CardProduct/CardProduct'
+import Products from '../../components/Products/Products'
+import Branding from '../../components/Branding/Branding'
 
 export default function Headphones() {
+  // console.log(data)
+
+  const headphonesArray = data.filter((headphone) => {
+    return headphone.category === "headphones"
+  })
+
+  const headphoneItem = headphonesArray.filter((headphone, index) => {
+    return headphone.id === 4
+  })
+
+  console.log(headphonesArray)
+
+
   return (
-    <div>Headphones</div>
+    <div className='page-main-container'>
+
+      <div className="page-banner-container">
+        <h1 className='page-title'>{headphoneItem[0].category}</h1>
+      </div>
+
+      <div className="page-product-container">
+
+        <div className="page-product-content">
+          {headphonesArray.map((headphone, index) => (
+            <CardProduct props={headphone} key={index} id={index}/>
+            ))}
+        </div>
+      
+        <Products />
+
+        <Branding />
+
+      </div>
+    </div>
   )
 }

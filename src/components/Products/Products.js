@@ -17,7 +17,7 @@ export default function Products() {
                     <p className='products__title'>HEADPHONES</p>
                     <div className="products__shop">
                         <p>SHOP</p>
-                        <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M1.322 1l5 5-5 5" stroke="#D87D4A" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+                        <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M1.322 1l5 5-5 5" stroke="#D87D4A" strokeWidth="2" fill="none"/></svg>
                     </div>
                 </div>
                 
@@ -32,7 +32,7 @@ export default function Products() {
                     <p className='products__title'>SPEAKERS</p>
                     <div className="products__shop">
                         <p>SHOP</p>
-                        <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M1.322 1l5 5-5 5" stroke="#D87D4A" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+                        <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M1.322 1l5 5-5 5" stroke="#D87D4A" strokeWidth="2" fill="none"/></svg>
                     </div>
                 </div>
                 
@@ -48,7 +48,7 @@ export default function Products() {
                     <p className='products__title'>EARPHONES</p>
                     <div className="products__shop">
                         <p>SHOP</p>
-                        <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M1.322 1l5 5-5 5" stroke="#D87D4A" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+                        <svg width="8" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M1.322 1l5 5-5 5" stroke="#D87D4A" strokeWidth="2" fill="none"/></svg>
                     </div>
                 </div>
                 

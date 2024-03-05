@@ -20,8 +20,8 @@ export default function Home() {
         </div>
 
         <picture className='hero-picture'>
-          <source media="(max-width: 480px)" srcset={'/starter-code/assets/home/mobile/image-header.jpg'} />
-          <source media="(max-width: 1024px)" srcset={'/starter-code/assets/home/tablet/image-header.jpg'} />
+          <source media="(max-width: 480px)" srcSet={'/starter-code/assets/home/mobile/image-header.jpg'} />
+          <source media="(max-width: 1024px)" srcSet={'/starter-code/assets/home/tablet/image-header.jpg'} />
           <img src='/starter-code/assets/home/desktop/image-hero.jpg' alt="mark-two headphones" />
         </picture>
 
@@ -35,8 +35,8 @@ export default function Home() {
 
               <div className="product-main-container">
                 <picture className='product-main-picture'>
-                  <source media="(max-width: 480px)" srcset={'/starter-code/assets/home/mobile/image-speaker-zx9.png'} />
-                  <source media="(max-width: 1024px)" srcset={'/starter-code/assets/home/tablet/image-speaker-zx9.png'} />
+                  <source media="(max-width: 480px)" srcSet={'/starter-code/assets/home/mobile/image-speaker-zx9.png'} />
+                  <source media="(max-width: 1024px)" srcSet={'/starter-code/assets/home/tablet/image-speaker-zx9.png'} />
                   <img src="/starter-code/assets/home/desktop/image-speaker-zx9.png" alt="speaker-zx9" />
                 </picture>
                   
@@ -69,8 +69,8 @@ export default function Home() {
 
               <div className="third-product-picture">
                 <picture>
-                  <source media="(max-width: 480px)" srcset={'/starter-code/assets/home/mobile/image-earphones-yx1.jpg'} />
-                  <source media="(max-width: 768px)" srcset={'/starter-code/assets/home/tablet/image-earphones-yx1.jpg'} />
+                  <source media="(max-width: 480px)" srcSet={'/starter-code/assets/home/mobile/image-earphones-yx1.jpg'} />
+                  <source media="(max-width: 768px)" srcSet={'/starter-code/assets/home/tablet/image-earphones-yx1.jpg'} />
                   <img src={'/starter-code/assets/home/desktop/image-earphones-yx1.jpg'} alt="" />
                 </picture>
               </div>

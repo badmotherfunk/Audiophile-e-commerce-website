@@ -1,0 +1,158 @@
+@import '../../styles/variables';
+@import '../../styles/breakpoints';
+
+.card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1130px;
+    gap: 100px;
+
+    @include desktop {
+        gap: 70px;
+    }
+
+    @include tablet {
+        flex-direction: column;
+        gap: 45px;
+    }
+
+    @include mobile {
+        gap: 30px;
+    }
+
+    &__picture {
+        display: flex;
+        width: 60%;
+
+        @include tablet {
+            width: 100%;
+        }
+    }
+
+    &__picture img {
+        border-radius: 10px;
+        width: 100%;
+        object-fit: cover;
+
+        @include tablet {
+            object-fit: cover;
+            height: 400px;
+        }
+    }
+}
+
+.card:nth-child(2) {
+    display: flex;
+    flex-direction: row-reverse;
+
+    @include tablet {
+        flex-direction: column;
+    }
+}
+
+.headphones-description-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+
+    @include tablet {
+        width: 100%;
+        align-items: center;
+    }
+}
+
+.new-product {
+    display: flex;
+    width: 100%;
+    padding-bottom: 10px;
+    color: $orange-dark-color;
+    letter-spacing: 7px;
+    font-size: 13px;
+
+    @include desktop {
+        font-size: 12px;
+    }
+
+    @include tablet {
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    @include mobile {
+        letter-spacing: 10px;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+}
+
+.headphones-description-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    gap: 25px;
+
+    @include desktop {
+        gap: 20px;
+    }
+
+    @include tablet {
+        width: 100%;
+        align-items: center;
+        gap: 30px;
+    }
+
+    @include mobile {
+        gap: 20px;
+    }
+}
+
+
+.headphones-title {
+    text-align: left;
+
+    @include desktop {
+        font-size: 30px;
+        line-height: 33px;
+    }
+
+    @include tablet {
+        text-align: center;
+        font-size: 37px;
+        width: 270px;
+        line-height: 37px;
+    }
+
+    @include mobile {
+        font-size: 30px;
+    }
+}
+
+.headphones-description {
+    text-align: left;
+    color: grey;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+
+    @include desktop {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    @include tablet {
+        text-align: center;
+        font-size: 14px;
+        width: 90%;
+        line-height: 23px;
+        margin-bottom: 0;
+    }
+
+    @include mobile {
+        width: 95%;
+    }
+
+}

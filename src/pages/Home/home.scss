@@ -16,7 +16,6 @@
     margin-bottom: 140px;
 
 
-
     @include tablet {
         margin-bottom: 90px;
     }
@@ -60,8 +59,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 1190px;
-    padding: 0 40px;
+    max-width: 1300px;
+    padding: 0 100px;
     opacity: 0;
     animation: textFade 1.2s 1s ease-in forwards;
     z-index: 2;
@@ -69,6 +68,8 @@
     @include desktop {
         width: 50%;
         margin: 0;
+        padding: auto;
+        
     }
 
     @include tablet {
@@ -202,6 +203,7 @@ main {
     justify-content: center;
     align-items: center;
     padding-top: 100px;
+    padding-bottom: 170px;
     gap: 50px;
 
     @include desktop {
@@ -211,11 +213,13 @@ main {
 
     @include tablet {
         padding-top: 40px;
+        padding-bottom: 100px;
         gap: 30px;
     }
 
     @include mobile {
         padding-top: 80px;
+        padding-bottom: 140px;
         gap: 25px;
     }
 }
@@ -573,20 +577,11 @@ main {
 }
 
 
-// SECTION BRANDING
+// BRANDING SECTION
 
 .branding-section {
     display: flex;
     justify-content: center;
-    padding: 170px 0;
-
-    @include desktop {
-        padding: 140px 0;
-    }
-
-    @include tablet {
-        padding: 120px 0;
-    }
 }
 
 

@@ -4,9 +4,21 @@
 .navbar {
     position: relative;
     width: 100%;
-    background-color: #191919;
+    background-color: $navbar-color;
     z-index: 99;
-    padding: 0 40px;
+    padding: 0 100px;
+
+    @include desktop {
+        padding: 0 60px;
+    }
+
+    @include tablet {
+        padding: 0 40px;
+    }
+
+    @include mobile {
+        padding: 0 25px;
+    }
 
     &__container {
     width: 100%;
@@ -14,7 +26,6 @@
     max-width: 69.375rem;
     height: 5.625rem;
     align-items: center;
-    justify-content: space-between;
     position: relative;
     margin: 0 auto;
     border-bottom: 1px solid rgba(250, 250, 250, 0.164);
@@ -48,6 +59,23 @@
     
     &__logo {
         display: flex;
+        position: absolute;
+        left: 0;
+
+        @include desktop {
+            transform: scale(0.7);
+            left: -21px;
+        }
+
+        @include tablet {
+            transform: initial;
+            left: 55px;
+        }
+
+        @include mobile {
+            left: 50%;
+            transform: translate(-50%);
+        }
 
     }
 
@@ -59,6 +87,14 @@
         font-size: 14px;
         letter-spacing: 2px;
         font-weight: 600;
+
+        justify-content: center;
+        width: 100%;
+
+        
+        @include desktop {
+            gap: 21px;
+        }
       
         @include tablet {
             display: none;
@@ -71,6 +107,8 @@
 
     &__cart {
         display: flex;
+        position: absolute;
+        right: 0;
     }
 }
 
@@ -93,7 +131,6 @@
     @include min-tablet {
         display: none;
     }
-
 }
 
 .active {
