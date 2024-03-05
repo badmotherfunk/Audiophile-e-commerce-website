@@ -1,15 +1,18 @@
 import React from 'react'
 import './cardProduct.scss'
 import ButtonFilled from '../ButtonFilled/ButtonFilled'
+import { useLocation } from 'react-router-dom'
 
 export default function CardProduct({props, id}) {
 
-    console.log(props)
+    const location = useLocation()
+
+    console.log(location)
 
     const headphone = props
 
   return (
-    <div className='card' id={id}>
+    <div className={location.pathname === "/speakers" ? "card-speaker" : "card"} id={id}>
         <picture className="card__picture">
             <source media="(max-width: 480px)" srcSet={headphone.categoryImage.mobile} />
             <source media="(max-width: 768px)" srcSet={headphone.categoryImage.tablet} />

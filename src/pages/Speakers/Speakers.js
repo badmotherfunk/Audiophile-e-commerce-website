@@ -1,8 +1,36 @@
 import React from 'react'
 import './speakers.scss'
+import data from '../../data.json'
+import CardProduct from '../../components/CardProduct/CardProduct'
+import Products from '../../components/Products/Products'
+import Branding from '../../components/Branding/Branding'
 
 export default function Speakers() {
+
+  const speakersArray = data.filter((speaker) => {
+    return speaker.category === "speakers"
+  })
+
   return (
-    <div>Speakers</div>
+    <div className='page-main-container'>
+
+      <div className="page-banner-container">
+        <h1 className='page-title'>SPEAKERS</h1>
+      </div>
+
+      <div className="page-product-container">
+
+        <div className="page-product-content">
+          {speakersArray.map((headphone, index) => (
+            <CardProduct props={headphone} key={index} id={index}/>
+            ))}
+        </div>
+      
+        <Products />
+
+        <Branding />
+
+      </div>
+    </div>
   )
 }
