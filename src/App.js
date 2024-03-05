@@ -6,10 +6,12 @@ import Headphones from './pages/Headphones/Headphones';
 import Speakers from './pages/Speakers/Speakers';
 import Earphones from './pages/Earphones/Earphones';
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   return (
     <div className="App">
+      <ScrollToTop />
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />}/>

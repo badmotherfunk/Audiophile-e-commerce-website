@@ -45,7 +45,7 @@ export default function Navbar() {
         </Link>
 
         <ul className='navbar__items'>
-          <Link to={"/"}>
+          <Link to={'/'}>
             <li>HOME</li>
           </Link>
           <Link to={"/headphones"}>

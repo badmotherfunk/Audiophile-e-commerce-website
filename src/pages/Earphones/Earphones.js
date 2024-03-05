@@ -7,8 +7,6 @@ import Branding from '../../components/Branding/Branding'
 
 export default function Earphones() {
 
-  console.log(data)
-
   const earphonesArray = data.filter((earphone) => {
     return earphone.category === "earphones"
   })

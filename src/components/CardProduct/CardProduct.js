@@ -7,8 +7,6 @@ export default function CardProduct({props, id}) {
 
     const location = useLocation()
 
-    console.log(location)
-
     const headphone = props
 
   return (
