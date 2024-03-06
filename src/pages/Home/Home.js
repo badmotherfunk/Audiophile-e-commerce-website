@@ -34,10 +34,8 @@ export default function Home() {
             <div className="hero-content">
               <p className='hero-title'>NEW PRODUCT</p>
               <h1 className='hero-product'>{product.name}</h1>
-              <p className='hero-description'>Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusisast.</p>
-              <Link to={{pathname: `${product.category}/products/${product.name}`}} state={product}>
-                <ButtonFilled />
-              </Link>
+              <p className='hero-description'>Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusisast.</p>             
+                <ButtonFilled props={product}/>
             </div>
           </div>
         ))}
@@ -87,9 +85,7 @@ export default function Home() {
                 {zx7Speakers.map((product) => (
                   <div className="secondary-product-content">
                     <p className='product-title-secondary'>{product.name}</p>
-                    <Link to={{pathname: `${product.category}/products/${product.name}`}} state={product}>
-                      <ButtonTransparent />
-                    </Link>
+                      <ButtonTransparent props={product} />
                     </div>
                 ))}
 
@@ -111,9 +107,7 @@ export default function Home() {
                 {yx1Earphones.map((product) => (
                   <div className="third-product-content">
                     <p className='third-product-title'>YX1 EARPHONES</p>
-                    <Link to={{pathname: `${product.category}/products/${product.name}`}} state={product}>
-                      <ButtonTransparent />
-                    </Link>
+                      <ButtonTransparent props={product}/>
                   </div>
                 ))}
                 

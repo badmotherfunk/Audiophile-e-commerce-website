@@ -2,14 +2,14 @@ import React from 'react'
 import './cardProduct.scss'
 import ButtonFilled from '../ButtonFilled/ButtonFilled'
 import { useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 export default function CardProduct({props, id}) {
 
     const location = useLocation()
 
-    // console.log(props)
-
+    props.previousPath = location.pathname
+ 
   return (
     <div className={location.pathname === "/speakers" ? "card-speaker" : "card"} id={id}>
         <picture className="card__picture">
@@ -25,9 +25,7 @@ export default function CardProduct({props, id}) {
             <div className="card-description-content">
                 <h3 className="card-title">{props.name}</h3>
                 <p className="card-description">{props.description}</p>
-                <Link to={{pathname: `/${props.category}/products/${props.slug}`}} state={props} >
-                    <ButtonFilled />
-                </Link>
+                <ButtonFilled props={props}/>
             </div>
         </div>
     </div>

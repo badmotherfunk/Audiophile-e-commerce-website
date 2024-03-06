@@ -19,7 +19,7 @@ function App() {
         <Route path="/headphones" element={<Headphones />}/>
         <Route path="/speakers" element={<Speakers />}/>
         <Route path="/earphones" element={<Earphones />}/>
-        <Route path="/:slug/products/:slug" element={<Products />}/>
+        <Route path=":slug/products/:slug" element={<Products />}/>
       </Routes>
       <Footer />
     </div>
