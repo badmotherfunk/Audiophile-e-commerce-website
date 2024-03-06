@@ -1,2 +1,35 @@
 @import '../../styles/variables';
 @import '../../styles/breakpoints.scss';
+
+.products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 80px 100px;
+
+    @include desktop {
+        padding: 80px 60px;
+    }
+
+    @include tablet {
+        padding: 80px 40px;
+    }
+
+    @include mobile {
+        padding: 50px 25px;
+    }
+
+}
+
+.go-back-button {
+    display: flex;
+    width: 100%;
+}
+
+.go-back-button a {
+    max-width: 1130px;
+    color: grey;
+    font-weight: 500;
+}

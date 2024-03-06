@@ -2,12 +2,10 @@ import React from 'react'
 import './cardProduct.scss'
 import ButtonFilled from '../ButtonFilled/ButtonFilled'
 import { useLocation } from 'react-router-dom'
-// import { Link } from 'react-router-dom'
 
 export default function CardProduct({props, id}) {
 
     const location = useLocation()
-
     props.previousPath = location.pathname
  
   return (

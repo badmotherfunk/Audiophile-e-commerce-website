@@ -1,6 +1,6 @@
 import React from 'react'
+import { useLocation, Link } from 'react-router-dom'
 import './products.scss'
-import { useLocation } from 'react-router-dom'
 
 export default function Products() {
 
@@ -8,6 +8,14 @@ export default function Products() {
     console.log(location)
 
   return (
-    <div>Products</div>
+    <div className='products'>
+
+        <div className="go-back-button">
+            <Link to={{pathname: `${location.state.previousPath}`}}>
+                Go Back
+            </Link>
+        </div>
+        
+    </div>
   )
 }

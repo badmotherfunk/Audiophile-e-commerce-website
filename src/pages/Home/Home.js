@@ -6,30 +6,40 @@ import ButtonTransparent from '../../components/ButtonTransparent/ButtonTranspar
 import Products from '../../components/ProductSection/ProductSection';
 import Branding from '../../components/Branding/Branding';
 import data from '../../data.json'
+import { useLocation } from 'react-router-dom';
 
 export default function Home() {
 
-  const xx99Headphones = data.filter((product) => (
+  const location = useLocation()
+
+  //Ajout de la location au tableau data
+  const newData = data.map((product) => {
+    product.previousPath = location.pathname
+
+    return product
+  })
+
+  const xx99Headphones = newData.filter((product) => (
     product.name === "XX99 Mark II Headphones"
   ))
 
-  const zx9Speakers = data.filter((product) => (
+  const zx9Speakers = newData.filter((product) => (
     product.name === "ZX9 Speaker"
   ))
 
-  const zx7Speakers = data.filter((product) => (
+  const zx7Speakers = newData.filter((product) => (
     product.name === "ZX7 Speaker"
   ))
 
-  const yx1Earphones = data.filter((product) => (
+  const yx1Earphones = newData.filter((product) => (
     product.name === "YX1 Wireless Earphones"
   ))
-
+  
   return (
     <>
       <header className='home-header'>
 
-        {xx99Headphones.map((product) => (
+        {xx99Headphones.map((product) => (         
           <div className="hero-container">
             <div className="hero-content">
               <p className='hero-title'>NEW PRODUCT</p>
