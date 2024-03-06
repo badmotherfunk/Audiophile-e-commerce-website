@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.scss'
-import Products from '../Products/Products'
+import Products from '../ProductSection/ProductSection'
 
 export default function Navbar() {
 

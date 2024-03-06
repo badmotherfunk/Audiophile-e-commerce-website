@@ -1,23 +1,46 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './home.scss'
 import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
 import ButtonTransparent from '../../components/ButtonTransparent/ButtonTransparent';
-import Products from '../../components/Products/Products';
+import Products from '../../components/ProductSection/ProductSection';
 import Branding from '../../components/Branding/Branding';
+import data from '../../data.json'
 
 export default function Home() {
+
+  const xx99Headphones = data.filter((product) => (
+    product.name === "XX99 Mark II Headphones"
+  ))
+
+  const zx9Speakers = data.filter((product) => (
+    product.name === "ZX9 Speaker"
+  ))
+
+  const zx7Speakers = data.filter((product) => (
+    product.name === "ZX7 Speaker"
+  ))
+
+  const yx1Earphones = data.filter((product) => (
+    product.name === "YX1 Wireless Earphones"
+  ))
+
   return (
     <>
       <header className='home-header'>
 
-        <div className="hero-container">
-          <div className="hero-content">
-            <p className='hero-title'>NEW PRODUCT</p>
-            <h1 className='hero-product'>XX99 MARK II HEADPHONES</h1>
-            <p className='hero-description'>Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusisast.</p>
-            <ButtonFilled />
+        {xx99Headphones.map((product) => (
+          <div className="hero-container">
+            <div className="hero-content">
+              <p className='hero-title'>NEW PRODUCT</p>
+              <h1 className='hero-product'>{product.name}</h1>
+              <p className='hero-description'>Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusisast.</p>
+              <Link to={{pathname: `${product.category}/products/${product.name}`}} state={product}>
+                <ButtonFilled />
+              </Link>
+            </div>
           </div>
-        </div>
+        ))}
 
         <picture className='hero-picture'>
           <source media="(max-width: 480px)" srcSet={'/starter-code/assets/home/mobile/image-header.jpg'} />
@@ -41,14 +64,17 @@ export default function Home() {
                 </picture>
                   
                 <div className="product-main-content">
-                  <div className="product-content">
-
-                    <p className='product-title-main'>ZX9 SPEAKER</p>
-                    <p className='product-description-main'>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
-                    <button className='button-speaker-main'>
-                      SEE PRODUCT
-                    </button>
-                  </div>
+                  {zx9Speakers.map((product) => (
+                    <div className="product-content">
+                      <p className='product-title-main'>{product.name}</p>
+                      <p className='product-description-main'>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
+                      <Link to={{pathname: `${product.category}/products/${product.name}`}} state={product}>
+                        <button className='button-speaker-main'>
+                          SEE PRODUCT
+                        </button>
+                      </Link>
+                    </div>
+                  ))}
                 </div>
 
               </div>
@@ -57,11 +83,16 @@ export default function Home() {
 
             <div className="secondary-product">
               <div className="secondary-product-container">
-                
-                <div className="secondary-product-content">
-                  <p className='product-title-secondary'>ZX7 SPEAKER</p>
-                    <ButtonTransparent />
-                </div>
+
+                {zx7Speakers.map((product) => (
+                  <div className="secondary-product-content">
+                    <p className='product-title-secondary'>{product.name}</p>
+                    <Link to={{pathname: `${product.category}/products/${product.name}`}} state={product}>
+                      <ButtonTransparent />
+                    </Link>
+                    </div>
+                ))}
+
               </div>
             </div>
 
@@ -76,10 +107,16 @@ export default function Home() {
               </div>
 
               <div className="third-product-content-container">
-                <div className="third-product-content">
-                  <p className='third-product-title'>YX1 EARPHONES</p>
-                  <ButtonTransparent />
-                </div>
+
+                {yx1Earphones.map((product) => (
+                  <div className="third-product-content">
+                    <p className='third-product-title'>YX1 EARPHONES</p>
+                    <Link to={{pathname: `${product.category}/products/${product.name}`}} state={product}>
+                      <ButtonTransparent />
+                    </Link>
+                  </div>
+                ))}
+                
               </div>
 
             </div>          

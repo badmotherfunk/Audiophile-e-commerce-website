@@ -2,7 +2,7 @@ import React from 'react'
 import './speakers.scss'
 import data from '../../data.json'
 import CardProduct from '../../components/CardProduct/CardProduct'
-import Products from '../../components/Products/Products'
+import Products from '../../components/ProductSection/ProductSection'
 import Branding from '../../components/Branding/Branding'
 
 export default function Speakers() {
@@ -21,8 +21,8 @@ export default function Speakers() {
       <div className="page-product-container">
 
         <div className="page-product-content">
-          {speakersArray.map((headphone, index) => (
-            <CardProduct props={headphone} key={index} id={index}/>
+          {speakersArray.map((speaker, index) => (
+            <CardProduct props={speaker} key={index} id={index}/>
             ))}
         </div>
       

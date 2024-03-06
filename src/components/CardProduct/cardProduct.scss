@@ -51,7 +51,7 @@
     }
 }
 
-.headphones-description-container {
+.card-description-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -88,7 +88,7 @@
     }
 }
 
-.headphones-description-content {
+.card-description-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -111,7 +111,7 @@
 }
 
 
-.headphones-title {
+.card-title {
     text-align: left;
 
     @include desktop {
@@ -131,7 +131,7 @@
     }
 }
 
-.headphones-description {
+.card-description {
     text-align: left;
     color: grey;
     font-size: 14px;

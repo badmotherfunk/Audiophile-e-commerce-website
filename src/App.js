@@ -7,6 +7,7 @@ import Speakers from './pages/Speakers/Speakers';
 import Earphones from './pages/Earphones/Earphones';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import Products from './components/Products/Products';
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/Headphones" element={<Headphones />}/>
-        <Route path="/Speakers" element={<Speakers />}/>
-        <Route path="/Earphones" element={<Earphones />}/>
+        <Route path="/headphones" element={<Headphones />}/>
+        <Route path="/speakers" element={<Speakers />}/>
+        <Route path="/earphones" element={<Earphones />}/>
+        <Route path="/:slug/products/:slug" element={<Products />}/>
       </Routes>
       <Footer />
     </div>
