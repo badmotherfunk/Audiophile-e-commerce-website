@@ -7,18 +7,18 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 80px 100px;
+    padding: 80px 100px 0 100px;
 
     @include desktop {
-        padding: 80px 60px;
+        padding: 80px 60px 0 60px;
     }
 
     @include tablet {
-        padding: 80px 40px;
+        padding: 80px 40px 0 40px;
     }
 
     @include mobile {
-        padding: 50px 25px;
+        padding: 50px 25px 0 25px;
     }
 
 }
@@ -26,10 +26,18 @@
 .go-back-button {
     display: flex;
     width: 100%;
+    max-width: 1130px;
 }
 
 .go-back-button a {
-    max-width: 1130px;
+
     color: grey;
     font-weight: 500;
+}
+
+.product-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

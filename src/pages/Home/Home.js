@@ -1,12 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './home.scss'
 import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
 import ButtonTransparent from '../../components/ButtonTransparent/ButtonTransparent';
 import Products from '../../components/ProductSection/ProductSection';
 import Branding from '../../components/Branding/Branding';
 import data from '../../data.json'
-import { useLocation } from 'react-router-dom';
 
 export default function Home() {
 
@@ -39,8 +38,8 @@ export default function Home() {
     <>
       <header className='home-header'>
 
-        {xx99Headphones.map((product) => (         
-          <div className="hero-container">
+        {xx99Headphones.map((product, index) => (         
+          <div key={index} className="hero-container">
             <div className="hero-content">
               <p className='hero-title'>NEW PRODUCT</p>
               <h1 className='hero-product'>{product.name}</h1>
@@ -72,8 +71,8 @@ export default function Home() {
                 </picture>
                   
                 <div className="product-main-content">
-                  {zx9Speakers.map((product) => (
-                    <div className="product-content">
+                  {zx9Speakers.map((product, index) => (
+                    <div key={index} className="product-content">
                       <p className='product-title-main'>{product.name}</p>
                       <p className='product-description-main'>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
                       <Link to={{pathname: `${product.category}/products/${product.name}`}} state={product}>
@@ -92,8 +91,8 @@ export default function Home() {
             <div className="secondary-product">
               <div className="secondary-product-container">
 
-                {zx7Speakers.map((product) => (
-                  <div className="secondary-product-content">
+                {zx7Speakers.map((product, index) => (
+                  <div key={index} className="secondary-product-content">
                     <p className='product-title-secondary'>{product.name}</p>
                       <ButtonTransparent props={product} />
                     </div>
@@ -114,8 +113,8 @@ export default function Home() {
 
               <div className="third-product-content-container">
 
-                {yx1Earphones.map((product) => (
-                  <div className="third-product-content">
+                {yx1Earphones.map((product, index) => (
+                  <div key={index} className="third-product-content">
                     <p className='third-product-title'>YX1 EARPHONES</p>
                       <ButtonTransparent props={product}/>
                   </div>
