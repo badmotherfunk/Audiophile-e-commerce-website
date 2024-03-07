@@ -7,7 +7,7 @@ import Speakers from './pages/Speakers/Speakers';
 import Earphones from './pages/Earphones/Earphones';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-import Products from './components/Products/Products';
+import Products from './pages/Products/Products';
 
 function App() {
   return (
