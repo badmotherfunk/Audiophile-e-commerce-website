@@ -2,13 +2,15 @@ import React, { useEffect, useState} from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import data from '../../data.json'
 import './products.scss'
+import ButtonFilled from '../../components/ButtonFilled/ButtonFilled'
+import ProductSection from '../../components/ProductSection/ProductSection'
+import Branding from '../../components/Branding/Branding'
 
 export default function Products() {
 
     const location = useLocation()
-    console.log(location)
 
-    const [price, setPrice] = useState()
+    const [price, setPrice] = useState([])
     const [counter, setCounter] = useState(1)
 
     // Ajout du nouveau chemin aux éléments du tableau
@@ -20,7 +22,7 @@ export default function Products() {
 
     // Filtre du produit en fonction de l'url
     const products = newData.filter((product) => (
-        product.name === location.state.name
+        product.slug === location.state.slug
     ))
 
     // Modification de l'affichage du prix
@@ -34,8 +36,7 @@ export default function Products() {
         }
     }, [products])
     
-    console.log(products)
-
+    // Gestion de l'état du compteur
     const handleCounterPlus = () => {
         setCounter( counter + 1)
     }
@@ -43,7 +44,6 @@ export default function Products() {
     const handleCounterMinus = () => {
         setCounter( counter - 1)
     }
-
 
   return (
     <div className='products'>
@@ -124,6 +124,29 @@ export default function Products() {
                         </picture>
                     </div>
                 </div>
+
+                <div className="also-like">
+
+                    <h5 className='also-like__title'>YOU MAY ALSO LIKE</h5>
+                    <div className="also-like__content">
+
+                        {product.others.map((item, index) => (                     
+                            <div key={index} className="also-like__card">
+                                <picture>
+                                    <source media="(max-width: 480px)" srcSet={item.image.mobile} />
+                                    <source media="(max-width: 768px)" srcSet={item.image.tablet} />
+                                    <img src={item.image.desktop} alt={item.name} />
+                                </picture>
+                                <h5 className='also-like__text'>{item.name}</h5>
+                                <ButtonFilled props={item}/>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <ProductSection />
+                <Branding />
+
             </div>
         ))}
         

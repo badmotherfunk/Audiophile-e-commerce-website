@@ -51,7 +51,7 @@
 
     @include tablet {
         padding-top: 30px;
-        gap: 100px;
+        gap: 110px;
     }
 
     @include mobile {
@@ -265,7 +265,7 @@
 }
 
 
-// PRODUCT INFORMATION
+// PRODUCT INFORMATION SECTION
 
 .card-product-content {
     display: flex;
@@ -275,7 +275,7 @@
 
     @include tablet {
         flex-direction: column;
-        gap: 130px;
+        gap: 100px;
     }
 
     @include mobile {
@@ -372,7 +372,7 @@
 }
 
 
-// GALLERY
+// GALLERY SECTION
 
 .gallery {
     display: flex;
@@ -407,5 +407,41 @@
         border-radius: 10px;
         width: 100%;
     }
+}
 
+
+// YOU MAY ALSO LIKE SECTION
+
+.also-like {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 1130px;
+    gap: 50px;
+    padding-bottom: 50px;
+
+    &__title {
+        font-size: 28px;
+        font-weight: 800;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 30px;
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    &__card img {
+        width: 100%;
+        border-radius: 10px;
+    }
 }
