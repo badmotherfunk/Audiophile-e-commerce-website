@@ -1,27 +1,27 @@
 import React, { useEffect, useState} from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import data from '../../data.json'
 import './products.scss'
 import ButtonFilled from '../../components/ButtonFilled/ButtonFilled'
 import ProductSection from '../../components/ProductSection/ProductSection'
 import Branding from '../../components/Branding/Branding'
 
+
 export default function Products() {
 
     const location = useLocation()
+    const navigate = useNavigate()
+
+    // Gére le retour à la page précédente
+    const handleGoBack = () => {
+        navigate(-1)
+    }
 
     const [price, setPrice] = useState([])
     const [counter, setCounter] = useState(1)
 
-    // Ajout du nouveau chemin aux éléments du tableau
-    const newData = data.map((data) => {
-        data.previousPath = location.pathname
-        
-        return data      
-    })
-
     // Filtre du produit en fonction de l'url
-    const products = newData.filter((product) => (
+    const products = data.filter((product) => (
         product.slug === location.state.slug
     ))
 
@@ -48,14 +48,14 @@ export default function Products() {
   return (
     <div className='products'>
 
-        <div className="go-back-button">
-            <Link to={{pathname: `${location.state.previousPath}`}}>
+        <div className="go-back-button" onClick={handleGoBack}>
+            <button>
                 Go Back
-            </Link>
+            </button>
         </div>
 
         {products.map((product, index) => (
-            <div className="product-container">
+            <div key={index} className="product-container">
 
                 <div className="item__product">
                     <picture className="item__product__picture">
@@ -100,7 +100,7 @@ export default function Products() {
                         <h5 className='inside__title'>IN THE BOX</h5>
                         <ul className='inside__include'>
                             {product.includes.map((items, index) => (
-                                <li className='inside__list'>
+                                <li key={index} className='inside__list'>
                                     <span className="inside__list__quantity">{items.quantity}x</span>
                                     <span className="inside__list__item">{items.item}</span>
                                 </li>
@@ -138,7 +138,7 @@ export default function Products() {
                                     <img src={item.image.desktop} alt={item.name} />
                                 </picture>
                                 <h5 className='also-like__text'>{item.name}</h5>
-                                <ButtonFilled props={item}/>
+                                <ButtonFilled props={item} />
                             </div>
                         ))}
                     </div>
