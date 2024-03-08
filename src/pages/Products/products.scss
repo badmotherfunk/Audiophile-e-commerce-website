@@ -32,8 +32,6 @@
 .go-back-button button {
     color: grey;
     font-weight: 500;
-    height: 20px;
-    outline: none;
     font-family: $text-font;
     font-size: 15px;
 
@@ -43,8 +41,7 @@
 }
 
 .go-back-button button:hover {
-    border-bottom: 1px solid grey;
-    line-height: auto;
+    color: $orange-dark-color;
 
     @include tablet {
         border-bottom: none;

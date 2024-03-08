@@ -7,7 +7,8 @@ import ProductSection from '../../components/ProductSection/ProductSection'
 import Branding from '../../components/Branding/Branding'
 
 
-export default function Products() {
+export default function Products({updateCart, cart}) {
+
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -43,6 +44,12 @@ export default function Products() {
 
     const handleCounterMinus = () => {
         setCounter( counter - 1)
+    }
+
+
+    // Gère l'état du panier
+    function handleCart(name, price, image) {
+        updateCart([...cart, {counter, name, price, image}])
     }
 
   return (
@@ -81,7 +88,7 @@ export default function Products() {
                                     <button className='counter__plus' onClick={handleCounterPlus}> + </button>
                                 </div>
 
-                                <button className="add-cart-button">
+                                <button className="add-cart-button" onClick={() => handleCart(product.name, product.price, product.image.desktop)}>
                                     ADD TO CART
                                 </button>
                             </div>
