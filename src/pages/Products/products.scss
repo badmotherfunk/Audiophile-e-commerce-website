@@ -424,9 +424,17 @@
     gap: 50px;
     padding-bottom: 50px;
 
+    @include mobile {
+        gap: 33px;
+    }
+
     &__title {
         font-size: 28px;
         font-weight: 800;
+
+        @include mobile {
+            font-size: 22px;
+        }
     }
 
     &__content {
@@ -436,7 +444,12 @@
         gap: 30px;
 
         @include tablet {
-            gap: 10px;
+            gap: 8px;
+        }
+
+        @include mobile {
+            flex-direction: column;
+            gap: 55px;
         }
     }
 
@@ -445,10 +458,26 @@
         flex-direction: column;
         align-items: center;
         gap: 30px;
+
+        @include tablet {
+            gap: 20px;
+        }
     }
 
     &__card img {
         width: 100%;
         border-radius: 10px;
+    }
+
+    &__text {
+        font-size: 24px;
+
+        @include tablet {
+            font-size: 3vw;
+        }
+
+        @include mobile {
+            font-size: 20px;
+        }
     }
 }
