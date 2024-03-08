@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/breakpoints';
 
 .buttonTransparent {
     width: 160px;
@@ -9,6 +10,12 @@
     font-size: 13px;
     font-family: $text-font;
     border: 1px solid $black-dark-color;
+
+    @include tablet {
+        width: 128px;
+        height: 44px;
+        font-size: 11px;
+    }
 }
 
 .buttonTransparent:hover {
