@@ -1,8 +1,11 @@
 import React from 'react'
 import './footer.scss'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Footer() {
+
+    const location = useLocation()
+
   return (
     <footer>
         <div className="footer-container">
@@ -14,16 +17,16 @@ export default function Footer() {
 
                 <ul className='navbar-items-footer'>
                     <Link to="/">
-                        <li>HOME</li>
+                        <li className={location.pathname === '/' ? 'navbar-items active' : 'navbar-items'}>HOME</li>
                     </Link>
                     <Link to={"/headphones"}>
-                        <li>HEADPHONES</li>
+                        <li className={location.pathname === '/headphones' ? 'navbar-items active' : 'navbar-items'}>HEADPHONES</li>
                     </Link>
                     <Link to={"/speakers"}>
-                        <li>SPEAKERS</li>
+                        <li className={location.pathname === '/speakers' ? 'navbar-items active' : 'navbar-items'}>SPEAKERS</li>
                     </Link>
                     <Link to={"/earphones"}>
-                        <li>EARPHONES</li>
+                        <li className={location.pathname === '/earphones' ? 'navbar-items active' : 'navbar-items'}>EARPHONES</li>
                     </Link>
                 </ul>
             </div>

@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
-import { useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import './navbar.scss'
 import Products from '../ProductSection/ProductSection'
 
 export default function Navbar() {
+
+  const location = useLocation()
 
   const [active, setActive] = useState(false)
 
@@ -46,16 +47,16 @@ export default function Navbar() {
 
         <ul className='navbar__items'>
           <Link to={'/'}>
-            <li>HOME</li>
+            <li className={location.pathname === '/' ? 'navbar__items active' : ''}>HOME</li>
           </Link>
           <Link to={"/headphones"}>
-            <li>HEADPHONES</li>
+            <li className={location.pathname === '/headphones' ? 'navbar__items active' : ''}>HEADPHONES</li>
           </Link>
           <Link to={"/speakers"}>
-            <li>SPEAKERS</li>
+            <li className={location.pathname === '/speakers' ? 'navbar__items active' : ''}>SPEAKERS</li>
           </Link>
           <Link to={"/earphones"}>
-            <li>EARPHONES</li>
+            <li className={location.pathname === '/earphones' ? 'navbar__items active' : ''}>EARPHONES</li>
           </Link>
         </ul>
 

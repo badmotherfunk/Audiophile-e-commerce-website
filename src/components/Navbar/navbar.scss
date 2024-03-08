@@ -101,8 +101,12 @@
         }
     }
 
-    & li:hover {
+    &__items.active {
         color: $orange-dark-color;
+    }
+
+    & li:hover {
+        color: $orange-light-color;
     }
 
     &__cart {
