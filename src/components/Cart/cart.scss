@@ -148,7 +148,7 @@
 .empty-container {
    display: flex;
    flex-direction: column;
-   gap: 50px;
+   gap: 30px;
    position: relative;
 
     &__text {
@@ -161,9 +161,13 @@
 }
 
 .empty-container svg {
-    transform: scale(3);
+    transform: scale(2);
     position: relative;
     animation: cart 2s ease-in-out infinite;
+}
+
+.empty-container span {
+    color: $orange-dark-color;
 }
 
 @keyframes cart {
