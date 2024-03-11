@@ -7,11 +7,15 @@ export default function Cart({cart}) {
     const updateCart = cart.updateCart
     const [cartItem, setCarteItem] = useState([])
 
-    // Récupération du panier stocker dans le localStorage recupéré dans (App.js)
+    
+    // Filtre les projets si le compteru et égal ou supérieur à 1
     useEffect(() => {
-        setCarteItem(cart.cart)
-    }, [cart])
-
+        setCarteItem(cartItem =>
+            cart.cart.filter((item) => item.counter >= 1)
+            )
+        }, [cart])
+        console.log(cartItem)
+        
     // Gestion du prix total du panier
     const price = cartItem.map((item) => {
         let itemPrice = item.price * item.counter
@@ -34,12 +38,12 @@ export default function Cart({cart}) {
 
 
     // Gestion du state du produit lorsque l'utilisateur décrémente
-    function handleMinus(name) {
+    function handleMinus(name, counter) {
         updateCart(cart =>
-            cart.map((item) => 
+            cart.map((item) =>
                 name === item.name ? {...item, counter: item.counter - 1} : item
             )
-        )
+        )       
     }
 
     // Gestion du state du produit lorsque l'utilisateur incrémente
@@ -55,6 +59,8 @@ export default function Cart({cart}) {
         updateCart([])
         localStorage.removeItem("cart")
     }
+
+    console.log(cart)
 
   return (
     <div className='cart'>
@@ -83,7 +89,7 @@ export default function Cart({cart}) {
                                         </div>
                                     </Link>
                                     <div className="counter-cart">
-                                        <button className='counter-cart__minus' onClick={() => handleMinus(item.name)} disabled={item.counter === 1}> - </button>
+                                        <button className='counter-cart__minus' onClick={() => handleMinus(item.name, item.counter)} disabled={item.counter === 0}> - </button>
                                             <p>{item.counter}</p>
                                         <button className='counter-cart__plus' onClick={() => handlePlus(item.name)}> + </button>
                                     </div>
