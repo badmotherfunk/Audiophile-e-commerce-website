@@ -4,7 +4,7 @@ import './navbar.scss'
 import Products from '../ProductSection/ProductSection'
 import Cart from '../Cart/Cart'
 
-export default function Navbar(cart) {
+export default function Navbar(cart, updateCart) {
 
   // console.log(cart)
 
@@ -19,21 +19,31 @@ export default function Navbar(cart) {
   }
 
   let modalRef = useRef();
+  let cartRef = useRef();
 
   function checkClickOutside(e) {
     if(active && !modalRef.current.contains(e.target || e.target.className === "navbar-products active")) {
       setActive(false)
     }
   }
-  function checkClickOutsideCart(e) {
-    if(cartActive && !modalRef.current.contains(e.target || e.target.className === "cart-nav__overlay")) {
-      setCarteActive(!cartActive)
-    }
-  }
+  // function checkClickOutsideCart(e) {
+  //   if(cartActive && !cartRef.current.contains(e.target || e.target.className === "cart-nav__overlay")) {
+  //     setCarteActive(false)
+  //   }
+  // }
 
   useEffect(() => {
-    document.addEventListener('mousedown', checkClickOutside && checkClickOutsideCart)
+    document.addEventListener('mousedown', checkClickOutside)
+    // document.addEventListener('mousedown', checkClickOutsideCart)
   })
+
+ 
+  // Ferme la modale 'Cart' lorsque l'on change de chemin d'accés
+  useEffect(() => {
+    if(location.pathname) {
+      setCarteActive(false)
+    }
+  }, [location])
 
   const handleCart = () => {
     setCarteActive(!cartActive)
@@ -91,9 +101,11 @@ export default function Navbar(cart) {
       </div>
 
       { cartActive &&
-      <div className='cart-nav'>
-        <div className="cart-nav__overlay" ></div>
-          <Cart props={cart}/>
+        <div className='cart-nav'>
+          <div className="cart-nav__overlay" ref={cartRef}></div>
+          <div className="cart-nav__content" >
+            <Cart cart={cart} updateCart={updateCart}/>
+          </div>
         </div>
       }
 

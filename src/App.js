@@ -11,10 +11,8 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import Products from './pages/Products/Products';
 
 function App() {
-
-  const [cart, updateCart] = useState([])
-
-  console.log(cart)
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]")
+  const [cart, updateCart] = useState(cartFromLocalStorage)
 
   return (
     <div className="App">

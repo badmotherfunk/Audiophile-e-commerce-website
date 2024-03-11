@@ -46,11 +46,28 @@ export default function Products({updateCart, cart}) {
         setCounter( counter - 1)
     }
 
-
     // Gère l'état du panier
-    function handleCart(name, price, image) {
-        updateCart([...cart, {counter, name, price, image}])
+    function handleCart(name, price, image, slug, category) {
+        //  si notre cart contient déja le nom du produit alors on lui ajoute le nouveau compteur
+        const currentProduct = cart.find((product) => product.name === name)
+        if (currentProduct) {
+            const filteredCurrentProduct = cart.filter(
+                (product) => product.name !== name
+            )
+            updateCart([
+                ...filteredCurrentProduct,
+                {name, price, image, slug, category, counter: currentProduct.counter + counter}
+            ])
+        // sinon, on ajoute toutes les infos du produit    
+        } else {
+            updateCart([...cart, {counter, name, price, image, slug, category}])
+        }
     }
+
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart))
+        
+    }, [cart])
 
   return (
     <div className='products'>
@@ -88,7 +105,7 @@ export default function Products({updateCart, cart}) {
                                     <button className='counter__plus' onClick={handleCounterPlus}> + </button>
                                 </div>
 
-                                <button className="add-cart-button" onClick={() => handleCart(product.name, product.price, product.image.desktop)}>
+                                <button className="add-cart-button" onClick={() => handleCart(product.name, product.price, product.image.desktop, product.slug, product.category)}>
                                     ADD TO CART
                                 </button>
                             </div>

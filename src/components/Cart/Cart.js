@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './cart.scss'
 
-export default function Cart(props) {
+export default function Cart({cart}) {
 
-    const cartItem = props.props.cart
+    const updateCart = cart.updateCart
+    const [cartItem, setCarteItem] = useState([])
+
+    // Récupération du panier stocker dans le localStorage recupéré dans (App.js)
+    useEffect(() => {
+        setCarteItem(cart.cart)
+    }, [cart])
 
     // Gestion du prix total du panier
     const price = cartItem.map((item) => {
@@ -25,6 +32,30 @@ export default function Cart(props) {
         (acc, product) => acc + product, 0
     )
 
+
+    // Gestion du state du produit lorsque l'utilisateur décrémente
+    function handleMinus(name) {
+        updateCart(cart =>
+            cart.map((item) => 
+                name === item.name ? {...item, counter: item.counter - 1} : item
+            )
+        )
+    }
+
+    // Gestion du state du produit lorsque l'utilisateur incrémente
+    function handlePlus(name) {
+        updateCart(cart =>
+            cart.map((item) => 
+                name === item.name ? {...item, counter: item.counter + 1} : item
+            )
+        )
+    }
+
+    const handleRemove = () => {
+        updateCart([])
+        localStorage.removeItem("cart")
+    }
+
   return (
     <div className='cart'>
 
@@ -35,32 +66,44 @@ export default function Cart(props) {
                     <>
                         <div className="cart-container__top">
                             <p className="cart-container__title">CART ({sumCount})</p>
-                            <button className='cart-container__remove'>Remove all</button>
+                            <button className='cart-container__remove' onClick={handleRemove}>Remove all</button>
                         </div>
 
-                        <div className="cart-list">
+                            <div className="cart-list">
+
                             {cartItem.map((item, index) => (
-                        
-                                <div className="cart-list__item">
-                                    <img src={item.image} alt={item.name} />
-                                    <div className="cart-list__content">
-                                        <p className="cart-list__content__title">{item.name}</p>
-                                        <p className="cart-list__content__price">$ {item.price}</p>
+                                <div key={index} className="cart-products">
+                                    <Link to={{pathname: `/${item.category}/products/${item.name}`}} state={item}>
+                                        <div className="cart-products__item">
+                                            <img src={item.image} alt={item.name} />
+                                            <div className="cart-products__content">
+                                                <p className="cart-products__content__title">{item.name}</p>
+                                                <p className="cart-products__content__price">$ {item.price}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                    <div className="counter-cart">
+                                        <button className='counter-cart__minus' onClick={() => handleMinus(item.name)} disabled={item.counter === 1}> - </button>
+                                            <p>{item.counter}</p>
+                                        <button className='counter-cart__plus' onClick={() => handlePlus(item.name)}> + </button>
                                     </div>
                                 </div>
                             ))}
-                        </div>
-                        {total &&
-                            <div className="cart-total">
-                                <p className="cart-total__text">TOTAL</p>
-                                <p className="cart-total__count">$ {total}</p>
                             </div>
+                        {total &&
+                            <>
+                                <div className="cart-total">
+                                    <p className="cart-total__text">TOTAL</p>
+                                    <p className="cart-total__count">$ {total}</p>
+                                </div>
+                                <button className='cart-button'>CHECKOUT</button>
+                            </>
                         }
                     </>
                 :
                     <div className="empty-container">
                         <p className="empty-container__text">
-                            <span>Oops,</span>
+                            <span>Oops...</span>
                             <br></br>
                             Your cart is empty
                          </p>
