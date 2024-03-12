@@ -9,6 +9,7 @@
     font-weight: 600;
     font-size: 13px;
     font-family: $text-font;
+    border-radius: 2px;
 
     @include tablet {
         width: 128px;

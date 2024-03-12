@@ -70,8 +70,8 @@ export default function Products({updateCart, cart}) {
   return (
     <div className='products'>
 
-        <div className="go-back-button" onClick={handleGoBack}>
-            <button>
+        <div className="go-back-button">
+            <button onClick={handleGoBack}>
                 Go Back
             </button>
         </div>

@@ -8,12 +8,12 @@ export default function Cart({cart, cartActive, setCartActive}) {
     const [cartItem, setCarteItem] = useState([])
 
     
-    // Filtre les projets si le compteru et égal ou supérieur à 1
+    // Filtre les projets si le compteur et égal ou supérieur à 1
     useEffect(() => {
         setCarteItem(cartItem =>
             cart.cart.filter((item) => item.counter >= 1)
             )
-        }, [cart])
+    }, [cart])
         
     // Gestion du prix total du panier
     const price = cartItem.map((item) => {
@@ -115,7 +115,7 @@ export default function Cart({cart, cartActive, setCartActive}) {
                                     <p className="cart-total__text">TOTAL</p>
                                     <p className="cart-total__count">$ {total}</p>
                                 </div>
-                                <Link className='cart-button-link' to={ '/checkout' } state={cartItem}>
+                                <Link className='cart-button-link' to={ '/checkout' } >
                                     <button className='cart-button'>CHECKOUT</button>
                                 </Link>
                             </>

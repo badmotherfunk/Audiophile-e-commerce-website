@@ -31,17 +31,35 @@
     padding: 35px 0 130px 0;
     gap: 20px;
     max-width: 1130px;
+
+    @include tablet {
+        flex-direction: column;
+    }
 }
 
 .checkout-form {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 65%;
     height: auto;
     background-color: $white-light-color;
     border-radius: 10px;
     padding: 50px;
     gap: 25px;
+
+    @include desktop {
+        gap: 20px;
+        padding: 40px;
+    }
+
+    @include tablet {
+        width: 100%;
+        padding: 40px 30px;
+    }
+
+    @include mobile {
+        padding: 30px 20px;
+    }
 }
 
 .checkout-title {
@@ -63,17 +81,26 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+
+    @include desktop {
+        gap: 15px;
+    }
 }
 
 .checkout-billing-input {
     display: flex;
     flex-direction: row;
     gap: 20px;
+
+    @include mobile {
+        flex-direction: column;
+    }
 }
 
 label {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
+    text-align: left
 }
 
 input {
@@ -83,12 +110,17 @@ input {
     outline: none;
     text-align: left;
     width: 100%;
-    padding: 30px;
-    font-size: 15px;
+    padding: 25px;
+    font-size: 14px;
     color: $black-dark-color;
     font-weight: 700;
     font-family: 'Manrope';
     margin-top: 7px;
+
+    @include desktop {
+        padding: 25px;
+        font-size: 14px;
+    }
 }
 
 input:focus {
@@ -112,6 +144,10 @@ input:focus {
     align-items: flex-start;
     width: 50%;
     gap: 25px;
+
+    @include mobile {
+        width: 100%;
+    }
 }
 
 .checkout-input-right {
@@ -119,13 +155,10 @@ input:focus {
     flex-direction: column;
     align-items: flex-start;
     width: 50%;
-}
 
-.checkout-summary {
-    width: 30%;
-    background-color: $white-light-color;
-    border-radius: 10px;
-    height: 500px;
+    @include mobile {
+        width: 100%;
+    }
 }
 
 .checkout-shipping {
@@ -134,6 +167,10 @@ input:focus {
     width: 100%;
     gap: 20px;
     padding-top: 35px;
+
+    @include desktop {
+        padding-top: 25px
+    }
 }
 
 .checkout-shipping-info {
@@ -141,6 +178,10 @@ input:focus {
     flex-direction: row;
     gap: 20px;
     width: 100%;
+
+    @include mobile {
+        flex-direction: column;
+    }
 }
 
 
@@ -150,6 +191,10 @@ input:focus {
     width: 100%;
     gap: 15px;
     padding-top: 35px;
+
+    @include desktop {
+        padding-top: 25px;
+    }
 }
 
 .payment-method {
@@ -158,6 +203,10 @@ input:focus {
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+
+    @include mobile {
+        flex-direction: column;
+    }
 }
 
 .payment-text {
@@ -173,6 +222,10 @@ input:focus {
     flex-direction: column;
     width: 50%;
     gap: 20px;
+
+    @include mobile {
+        width: 100%;
+    }
 }
 
 input[type=radio] {
@@ -190,11 +243,15 @@ input[type=radio] {
     justify-content: flex-start;
     border: 1px solid rgb(209, 209, 209);
     border-radius: 10px;
-    height: 60px;
+    height: 50px;
     padding: 20px;
     gap: 20px;
     font-weight: 700;
     cursor: pointer;
+
+    @include desktop {
+        height: 50px;
+    }
 }
 
 .e-money label,
@@ -220,6 +277,10 @@ input[type=radio] {
 .payment-method-information {
     display: flex;
     gap: 20px;
+
+    @include mobile {
+        flex-direction: column;
+    }
 }
 
 .cash-delivery-information {
@@ -229,6 +290,10 @@ input[type=radio] {
     width: 100%;
     gap: 30px;
     margin-top: 20px;
+
+    @include mobile {
+        flex-direction: column;
+    }
 }
 
 .cash-delivery-information p {
@@ -236,4 +301,235 @@ input[type=radio] {
     text-align: left;
     font-weight: 500;
     width: 85%;
+
+    @include mobile {
+        width: 100%;
+        font-size: 13px;
+    }
+}
+
+
+// SUMMARY
+
+.checkout-summary {
+    width: 35%;
+    background-color: $white-light-color;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 30px;
+
+    @include desktop {
+        padding: 25px 15px;
+    }
+
+    @include tablet {
+        width: 100%;
+        padding: 40px 30px;
+    }
+
+    @include mobile {
+        padding: 30px 20px;
+    }
+}
+
+.summary-title {
+    display: flex;
+    font-size: 22px;
+    font-weight: 800;
+
+    @include tablet {
+        font-size: 20px;
+    }
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @include tablet {
+        gap: 25px;
+    }
+}
+
+.summary-items {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+
+    @include desktop {
+        gap: 10px;
+    }
+
+    @include tablet {
+        gap: 20px;
+    }
+}
+
+.summary-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.summary-item-information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+
+    @include tablet {
+        gap: 5px;
+    }
+}
+
+.summary-item-title {
+    text-align: left;
+    line-height: 20px;
+    font-weight: 700;
+
+    @include desktop {
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 17px;
+    }
+
+    @include tablet {
+        font-size: 16px;
+    }
+
+    @include mobile {
+        font-size: 15px;
+    }
+}
+
+.summary-item-price {
+    color: grey;
+    font-weight: 600;
+
+    @include desktop {
+        font-size: 14px;
+    }
+
+    @include tablet {
+        font-size: 15px;
+    }
+
+    @include mobile {
+        font-size: 14px;
+    }
+}
+
+.summary-item-quantity p {
+    font-size: 16px;
+    font-weight: 800;
+    color: grey;
+
+    @include desktop {
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    @include tablet {
+        font-size: 16px;
+    }
+
+    @include mobile {
+        font-size: 15px;
+    }
+}
+
+.summary-items img {
+    width: 70px;
+    border-radius: 10px;
+}
+
+.summary-payment-information {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.summary-total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.summary-total-title {
+    color: grey;
+    font-weight: 500;
+    font-size: 16px;
+
+    @include desktop {
+        font-size: 14px;
+    }
+
+    @include tablet {
+        font-size: 15px;
+    }
+
+    @include mobile {
+        font-size: 14px;
+    }
+}
+
+.summary-total-sum {
+    font-weight: 700;
+    font-size: 18px;
+
+    @include desktop {
+        font-size: 16px;
+    }
+
+    @include tablet {
+        font-size: 17px;
+    }
+
+    
+    @include mobile {
+        font-size: 16px;
+    }
+}
+
+.summary-grand-total-sum {
+    font-weight: 700;
+    font-size: 18px;
+    color: $orange-dark-color;
+
+    @include desktop {
+        font-size: 16px;
+    }
+
+    @include tablet {
+        font-size: 17px;
+    }
+    
+    @include mobile {
+        font-size: 16px;
+    }
+}
+
+.payment-button {
+    background-color: $orange-dark-color;
+    color: $white-light-color;
+    width: 100%;
+    height: 47px;
+    border-radius: 2px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.payment-button:hover {
+    background-color: $orange-light-color;
 }

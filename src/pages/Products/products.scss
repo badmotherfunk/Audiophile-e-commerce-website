@@ -30,10 +30,12 @@
 }
 
 .go-back-button button {
+    display: flex;
     color: grey;
     font-weight: 500;
     font-family: $text-font;
     font-size: 15px;
+    width: fit-content;
 
     @include tablet {
         font-size: 14px;
@@ -233,12 +235,14 @@
 .counter {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 9px;
     background-color: $grey-dark-color;
     font-size: 13px;
     font-weight: bold;
     width: 7.5rem;
     height: 48px;
+    border-radius: 2px;
 
     &__minus,
     &__plus {
@@ -267,6 +271,7 @@
     color: #FFFFFF;
     letter-spacing: 1px;
     font-size: 12px;
+    border-radius: 2px;
 }
 
 .add-cart-button:hover {

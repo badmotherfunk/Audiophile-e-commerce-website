@@ -408,6 +408,7 @@ main {
     background-color: $black-dark-color;
     border: 1px solid $black-dark-color;
     z-index: 10;
+    border-radius: 2px;
 
     @include desktop {
         margin-bottom: 55px;

@@ -1,12 +1,27 @@
-import React, { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './checkout.scss'
 
 export default function Checkout() {
 
-    const location = useLocation()
     const navigate = useNavigate()
-    console.log(location)
+    const [products, setProducts] = useState([])
+    const [vatPrice, setVatPrice] = useState([])
+    
+    // Filtre les produits du panier >= 1
+    useEffect(() => {
+        const storage = JSON.parse(localStorage.getItem("cart")) || []
+        setProducts(product =>
+            storage.filter((item) => item.counter >= 1)
+            )
+    }, [setProducts])
+
+    // Prévient le comportement par défaut si le panier est vide
+    useEffect(() => {
+        if(localStorage.length === 0) {
+            navigate('/')
+        }
+    })
 
     const handleGoBack = () => {
         navigate(- 1)
@@ -21,11 +36,39 @@ export default function Checkout() {
         }
     }
 
+    // Calcul du prix total du panier
+    const price = products.map((item) => {
+        let itemPrice = item.price * item.counter
+    
+        return itemPrice
+    })
+        
+    const total = price.reduce(
+        (acc, product) => acc + product, 0
+    )
+
+    // Calcul du total du panier + taxe
+    const totalPrice = total * 1.20
+
+    // Calcul de la TVA inclue dans le prix
+    useEffect(() => {
+        let price = totalPrice / 1.20
+        const subPrice = totalPrice - price
+        
+        const subTotal = Math.round(subPrice)
+        
+        setVatPrice(subTotal)
+    }, [totalPrice])
+
+    // Calcul du prix avec TVA (arrondi) + livraison
+    const grandPrice = Math.round(totalPrice) + 50
+
+
   return (
     <div className='checkout'>
 
-        <div className="go-back-button" onClick={handleGoBack}>
-            <button>
+        <div className="go-back-button">
+            <button onClick={handleGoBack}>
                 Go Back
             </button>
         </div>
@@ -143,7 +186,56 @@ export default function Checkout() {
             </div>
 
             <div className="checkout-summary">
+                <div className="summary-content">
+                    <h2 className='summary-title'>SUMMARY</h2>
 
+                    <div className="summary-list">
+
+                        { products.map((product, index) => (
+                            <div key={index} className="summary-items">
+
+                                <img src={product.image} alt={product.name} />
+
+                                <div className="summary-item-content">
+                                    <div className="summary-item-information">
+                                        <p className='summary-item-title'>{product.name}</p>
+                                        <p className='summary-item-price'>$ {product.price}</p>
+                                    </div>
+
+                                    <div className="summary-item-quantity">
+                                        <p>x{product.counter}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="summary-payment-information">
+                        <div className="summary-total">
+                            <p className='summary-total-title'>TOTAL</p>
+                            <p className='summary-total-sum'>$ {total}</p>
+                        </div>
+
+                        <div className="summary-total">
+                            <p className='summary-total-title'>SHIPPING</p>
+                            <p className='summary-total-sum'>$ 50</p>
+                        </div>
+
+                        <div className="summary-total">
+                            <p className='summary-total-title'>VAT (INCLUDED)</p>
+                            <p className='summary-total-sum'>$ {vatPrice}</p>
+                        </div>
+
+                        <div className="summary-total">
+                            <p className='summary-total-title'>GRAND TOTAL</p>
+                            <p className='summary-grand-total-sum'>$ {grandPrice}</p>
+                        </div>
+                    </div>
+
+                    <button className="payment-button">CONTINUE & PAY</button>
+
+                </div>
             </div>
 
         </div>
