@@ -9,7 +9,6 @@ import Branding from '../../components/Branding/Branding'
 
 export default function Products({updateCart, cart}) {
 
-
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -48,7 +47,7 @@ export default function Products({updateCart, cart}) {
 
     // Gère l'état du panier
     function handleCart(name, price, image, slug, category) {
-        //  si notre cart contient déja le nom du produit alors on lui ajoute le nouveau compteur
+        // Si notre cart contient déja le nom du produit alors on lui ajoute le nouveau compteur
         const currentProduct = cart.find((product) => product.name === name)
         if (currentProduct) {
             const filteredCurrentProduct = cart.filter(
@@ -58,15 +57,14 @@ export default function Products({updateCart, cart}) {
                 ...filteredCurrentProduct,
                 {name, price, image, slug, category, counter: currentProduct.counter + counter}
             ])
-        // sinon, on ajoute toutes les infos du produit    
+        // Sinon, on ajoute toutes les infos du produit    
         } else {
             updateCart([...cart, {counter, name, price, image, slug, category}])
         }
     }
 
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart))
-        
+        localStorage.setItem("cart", JSON.stringify(cart))      
     }, [cart])
 
   return (

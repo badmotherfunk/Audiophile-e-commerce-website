@@ -43,7 +43,8 @@ export default function Cart({cart}) {
             cart.map((item) =>
                 name === item.name ? {...item, counter: item.counter - 1} : item
             )
-        )       
+        )
+        localStorage.setItem("cart", JSON.stringify(cart))         
     }
 
     // Gestion du state du produit lorsque l'utilisateur incrémente
@@ -51,16 +52,15 @@ export default function Cart({cart}) {
         updateCart(cart =>
             cart.map((item) => 
                 name === item.name ? {...item, counter: item.counter + 1} : item
-            )
+            )  
         )
+        localStorage.setItem("cart", JSON.stringify(cart))  
     }
 
     const handleRemove = () => {
         updateCart([])
         localStorage.removeItem("cart")
     }
-
-    console.log(cart)
 
   return (
     <div className='cart'>

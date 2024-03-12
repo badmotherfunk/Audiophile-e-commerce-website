@@ -6,8 +6,6 @@ import Cart from '../Cart/Cart'
 
 export default function Navbar(cart, updateCart) {
 
-  // console.log(cart)
-
   const location = useLocation()
 
   const [active, setActive] = useState(false)
@@ -49,8 +47,6 @@ export default function Navbar(cart, updateCart) {
     setCarteActive(!cartActive)
     setActive(false)
   }
-
-  console.log(cart)
 
     // Gestion du nombre total d'article dans le panier
     const totalProduct = cart.cart.map((item) => (
