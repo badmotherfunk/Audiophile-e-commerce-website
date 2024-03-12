@@ -9,53 +9,47 @@ export default function Navbar(cart, updateCart) {
   const location = useLocation()
 
   const [active, setActive] = useState(false)
-  const [cartActive, setCarteActive] = useState(false)
+  const [cartActive, setCartActive] = useState(false)
 
   const toggleActive = () => {
     setActive(!active)
-    setCarteActive(false)
+    setCartActive(false)
   }
 
   let modalRef = useRef();
-  let cartRef = useRef();
+  // let cartRef = useRef();
 
   function checkClickOutside(e) {
     if(active && !modalRef.current.contains(e.target || e.target.className === "navbar-products active")) {
       setActive(false)
     }
   }
-  // function checkClickOutsideCart(e) {
-  //   if(cartActive && !cartRef.current.contains(e.target || e.target.className === "cart-nav__overlay")) {
-  //     setCarteActive(false)
-  //   }
-  // }
 
   useEffect(() => {
     document.addEventListener('mousedown', checkClickOutside)
-    // document.addEventListener('mousedown', checkClickOutsideCart)
   })
-
  
   // Ferme la modale 'Cart' lorsque l'on change de chemin d'accés
   useEffect(() => {
     if(location.pathname) {
-      setCarteActive(false)
+      setCartActive(false)
+      setActive(false)
     }
   }, [location])
 
   const handleCart = () => {
-    setCarteActive(!cartActive)
+    setCartActive(!cartActive)
     setActive(false)
   }
 
-    // Gestion du nombre total d'article dans le panier
-    const totalProduct = cart.cart.map((item) => (
-        item.counter 
-    ))
+  // Gestion du nombre total d'article dans le panier
+  const totalProduct = cart.cart.map((item) => (
+      item.counter 
+  ))
 
-    const sumCount = totalProduct.reduce(
-        (acc, product) => acc + product, 0
-    )
+  const sumCount = totalProduct.reduce(
+      (acc, product) => acc + product, 0
+  )
 
 
   return (
@@ -106,17 +100,12 @@ export default function Navbar(cart, updateCart) {
       </nav>
 
       <div className={active ? "navbar-overlay active" : "navbar-overlay"}></div>
-      <div ref={modalRef} className={active ? "navbar-products active" : "navbar-products"} onClick={toggleActive}>
+      <div ref={modalRef} className={active ? "navbar-products active" : "navbar-products"}>
         <Products />
       </div>
 
       { cartActive &&
-        <div className='cart-nav'>
-          <div className="cart-nav__overlay" ref={cartRef}></div>
-          <div className="cart-nav__content" >
-            <Cart cart={cart} updateCart={updateCart}/>
-          </div>
-        </div>
+        <Cart cart={cart} updateCart={updateCart} cartActive={cartActive} setCartActive={setCartActive}/>
       }
 
     </div>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './cart.scss'
 
-export default function Cart({cart}) {
+export default function Cart({cart, cartActive, setCartActive}) {
 
     const updateCart = cart.updateCart
     const [cartItem, setCarteItem] = useState([])
@@ -36,7 +36,6 @@ export default function Cart({cart}) {
         (acc, product) => acc + product, 0
     )
 
-
     // Gestion du state du produit lorsque l'utilisateur décrémente
     function handleMinus(name, counter) {
         updateCart(cart =>
@@ -62,9 +61,24 @@ export default function Cart({cart}) {
         localStorage.removeItem("cart")
     }
 
+
+    // Gère la fermeture de la modale cart au click sur l'overlay
+    const cartRef = useRef()
+
+    function checkClickOutsideCart(e) {
+        if(cartActive && cartRef.current?.contains(e.target || e.target.className === "cart-container empty")) {
+          setCartActive(false)
+        }
+    }
+    
+    useEffect(() => {
+        document.addEventListener('mousedown', checkClickOutsideCart)
+    })
+
   return (
     <div className='cart'>
 
+        <div ref={cartRef} className="cart__overlay"></div>
         <div className="cart-global">
             <div className={ total !== 0 && sumCount !== 0 ? "cart-container" : "cart-container empty"}>
 
