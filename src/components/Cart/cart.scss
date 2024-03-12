@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     padding: 120px 100px 0 100px;
+    z-index: -2;
 
     @include desktop {
         padding: 120px 60px 0 60px;
@@ -36,7 +37,7 @@
     display: flex;
     justify-content: flex-end;
     max-width: 1130px;
-
+    height: 0;
 }
 
 .cart-container {
@@ -50,6 +51,7 @@
     border-radius: 10px;
     padding: 25px;
     height: fit-content;
+    z-index: 10;
 
     @include mobile {
         width: 100%;
@@ -241,5 +243,9 @@
 
 .cart-button:hover {
     background-color: $orange-light-color;
+}
+
+.cart-button-link {
+    width: 100%;
 }
 

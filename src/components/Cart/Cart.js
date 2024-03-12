@@ -14,7 +14,6 @@ export default function Cart({cart, cartActive, setCartActive}) {
             cart.cart.filter((item) => item.counter >= 1)
             )
         }, [cart])
-        console.log(cartItem)
         
     // Gestion du prix total du panier
     const price = cartItem.map((item) => {
@@ -116,7 +115,9 @@ export default function Cart({cart, cartActive, setCartActive}) {
                                     <p className="cart-total__text">TOTAL</p>
                                     <p className="cart-total__count">$ {total}</p>
                                 </div>
-                                <button className='cart-button'>CHECKOUT</button>
+                                <Link className='cart-button-link' to={ '/checkout' } state={cartItem}>
+                                    <button className='cart-button'>CHECKOUT</button>
+                                </Link>
                             </>
                         }
                     </>

@@ -1,0 +1,239 @@
+@import '../../styles/variables';
+@import '../../styles/breakpoints.scss';
+
+.checkout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 80px 100px 0 100px;
+    background-color: $grey-dark-color;
+
+    @include desktop {
+        padding: 80px 60px 0 60px;
+    }
+
+    @include tablet {
+        padding: 40px 40px 0 40px;
+    }
+
+    @include mobile {
+        padding: 25px 25px 0 25px;
+    }
+
+}
+
+.checkout-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 35px 0 130px 0;
+    gap: 20px;
+    max-width: 1130px;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: auto;
+    background-color: $white-light-color;
+    border-radius: 10px;
+    padding: 50px;
+    gap: 25px;
+}
+
+.checkout-title {
+    display: flex;
+    font-size: 32px;
+}
+
+.checkout-subtitle {
+    display: flex;
+    color: $orange-dark-color;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.checkout-billing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.checkout-billing-input {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+label {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+input {
+    height: 30px;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 10px;
+    outline: none;
+    text-align: left;
+    width: 100%;
+    padding: 30px;
+    font-size: 15px;
+    color: $black-dark-color;
+    font-weight: 700;
+    font-family: 'Manrope';
+    margin-top: 7px;
+}
+
+input:focus {
+    border: 1px solid $orange-dark-color;
+}
+
+::placeholder {
+    color: rgb(151, 151, 151);
+}
+
+.checkout-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.checkout-input-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    gap: 25px;
+}
+
+.checkout-input-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+}
+
+.checkout-summary {
+    width: 30%;
+    background-color: $white-light-color;
+    border-radius: 10px;
+    height: 500px;
+}
+
+.checkout-shipping {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    padding-top: 35px;
+}
+
+.checkout-shipping-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+}
+
+
+.checkout-payment {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    padding-top: 35px;
+}
+
+.payment-method {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.payment-text {
+    display: flex;
+    font-weight: 700;
+    font-size: 13px;
+    width: 50%;
+    text-align: left;
+}
+
+.payment-method-input {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 20px;
+}
+
+input[type=radio] {
+    width: 20px;
+    cursor: pointer;
+    accent-color: $orange-dark-color;
+    margin-top: 0;
+}
+
+.e-money,
+.cash-delivery {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: 10px;
+    height: 60px;
+    padding: 20px;
+    gap: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.e-money label,
+.cash-delivery label {
+    display: flex;
+    width: 100%;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.e-money:hover,
+.cash-delivery:hover {
+    border: 1px solid $orange-light-color;
+}
+
+.e-money:has(input[type=radio]:checked) {
+    border: 1px solid $orange-dark-color;
+}
+.cash-delivery:has(input[type=radio]:checked) {
+    border: 1px solid $orange-dark-color;
+}
+
+.payment-method-information {
+    display: flex;
+    gap: 20px;
+}
+
+.cash-delivery-information {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.cash-delivery-information p {
+    color: rgb(126, 126, 126);
+    text-align: left;
+    font-weight: 500;
+    width: 85%;
+}
