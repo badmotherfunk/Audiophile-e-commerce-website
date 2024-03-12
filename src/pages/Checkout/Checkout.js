@@ -47,21 +47,18 @@ export default function Checkout() {
         (acc, product) => acc + product, 0
     )
 
-    // Calcul du total du panier + taxe
-    const totalPrice = total * 1.20
-
     // Calcul de la TVA inclue dans le prix
     useEffect(() => {
-        let price = totalPrice / 1.20
-        const subPrice = totalPrice - price
+        let price = total * 1.20
+        const subPrice = price - total
         
-        const subTotal = Math.round(subPrice)
+        const subTotal = Math.floor(subPrice)
         
         setVatPrice(subTotal)
-    }, [totalPrice])
+    }, [total])
 
     // Calcul du prix avec TVA (arrondi) + livraison
-    const grandPrice = Math.round(totalPrice) + 50
+    const grandPrice = Math.round(total) + 50
 
 
   return (
