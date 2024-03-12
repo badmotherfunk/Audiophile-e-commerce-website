@@ -40,9 +40,9 @@ export default function Cart({cart, cartActive, setCartActive}) {
         updateCart(cart =>
             cart.map((item) =>
                 name === item.name ? {...item, counter: item.counter - 1} : item
-            )
+            ),
+            localStorage.setItem("cart", JSON.stringify(cart))         
         )
-        localStorage.setItem("cart", JSON.stringify(cart))         
     }
 
     // Gestion du state du produit lorsque l'utilisateur incrémente
@@ -50,9 +50,9 @@ export default function Cart({cart, cartActive, setCartActive}) {
         updateCart(cart =>
             cart.map((item) => 
                 name === item.name ? {...item, counter: item.counter + 1} : item
-            )  
+            ),  
+            localStorage.setItem("cart", JSON.stringify(cart))  
         )
-        localStorage.setItem("cart", JSON.stringify(cart))  
     }
 
     const handleRemove = () => {
