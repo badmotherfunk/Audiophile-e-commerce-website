@@ -195,7 +195,7 @@ export default function Checkout() {
 
                                 <div className="summary-item-content">
                                     <div className="summary-item-information">
-                                        <p className='summary-item-title'>{product.name}</p>
+                                        <p className='summary-item-title'>{product.subName}</p>
                                         <p className='summary-item-price'>$ {product.price}</p>
                                     </div>
 

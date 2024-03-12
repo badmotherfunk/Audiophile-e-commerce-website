@@ -14,6 +14,8 @@ export default function Cart({cart, cartActive, setCartActive}) {
             cart.cart.filter((item) => item.counter >= 1)
             )
     }, [cart])
+
+    console.log(cart)
         
     // Gestion du prix total du panier
     const price = cartItem.map((item) => {
@@ -96,7 +98,7 @@ export default function Cart({cart, cartActive, setCartActive}) {
                                         <div className="cart-products__item">
                                             <img src={item.image} alt={item.name} />
                                             <div className="cart-products__content">
-                                                <p className="cart-products__content__title">{item.name}</p>
+                                                <p className="cart-products__content__title">{item.subName}</p>
                                                 <p className="cart-products__content__price">$ {item.price}</p>
                                             </div>
                                         </div>

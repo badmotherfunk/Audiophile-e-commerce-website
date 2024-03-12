@@ -17,9 +17,10 @@ export default function Products({updateCart, cart}) {
         navigate(-1)
     }
 
+    
     const [price, setPrice] = useState([])
     const [counter, setCounter] = useState(1)
-
+    
     // Filtre du produit en fonction de l'url
     const products = data.filter((product) => (
         product.slug === location.state.slug
@@ -46,7 +47,7 @@ export default function Products({updateCart, cart}) {
     }
 
     // Gère l'état du panier
-    function handleCart(name, price, image, slug, category) {
+    function handleCart(name, price, image, slug, category, subName) {
         // Si notre cart contient déja le nom du produit alors on lui ajoute le nouveau compteur
         const currentProduct = cart.find((product) => product.name === name)
         if (currentProduct) {
@@ -55,11 +56,11 @@ export default function Products({updateCart, cart}) {
             )
             updateCart([
                 ...filteredCurrentProduct,
-                {name, price, image, slug, category, counter: currentProduct.counter + counter}
+                {name, price, image, slug, category, subName, counter: currentProduct.counter + counter}
             ])
         // Sinon, on ajoute toutes les infos du produit    
         } else {
-            updateCart([...cart, {counter, name, price, image, slug, category}])
+            updateCart([...cart, {counter, name, price, image, slug, category, subName}])
         }
     }
 
@@ -103,7 +104,7 @@ export default function Products({updateCart, cart}) {
                                     <button className='counter__plus' onClick={handleCounterPlus}> + </button>
                                 </div>
 
-                                <button className="add-cart-button" onClick={() => handleCart(product.name, product.price, product.image.desktop, product.slug, product.category)}>
+                                <button className="add-cart-button" onClick={() => handleCart(product.name, product.price, product.image.desktop, product.slug, product.category, product.subName)}>
                                     ADD TO CART
                                 </button>
                             </div>

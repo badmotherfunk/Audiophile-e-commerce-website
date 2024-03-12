@@ -319,7 +319,7 @@ input[type=radio] {
     padding: 30px;
 
     @include desktop {
-        padding: 25px 15px;
+        padding: 30px 20px;
     }
 
     @include tablet {
@@ -397,7 +397,7 @@ input[type=radio] {
     font-weight: 700;
 
     @include desktop {
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 800;
         line-height: 17px;
     }
