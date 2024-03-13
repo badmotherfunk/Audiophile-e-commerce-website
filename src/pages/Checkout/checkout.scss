@@ -380,6 +380,10 @@ input[type=radio] {
     gap: 25px;
 }
 
+.summary-list a {
+    width: 100%;
+}
+
 .summary-item-information {
     display: flex;
     flex-direction: column;
@@ -395,6 +399,7 @@ input[type=radio] {
     text-align: left;
     line-height: 20px;
     font-weight: 700;
+    color: $black-dark-color;
 
     @include desktop {
         font-size: 14px;
@@ -430,7 +435,7 @@ input[type=radio] {
 
 .summary-item-quantity p {
     font-size: 16px;
-    font-weight: 800;
+    font-weight: 700;
     color: grey;
 
     @include desktop {
@@ -469,15 +474,7 @@ input[type=radio] {
 .summary-total-title {
     color: grey;
     font-weight: 500;
-    font-size: 16px;
-
-    @include desktop {
-        font-size: 14px;
-    }
-
-    @include tablet {
-        font-size: 15px;
-    }
+    font-size: 15px;
 
     @include mobile {
         font-size: 14px;
@@ -486,16 +483,7 @@ input[type=radio] {
 
 .summary-total-sum {
     font-weight: 700;
-    font-size: 18px;
-
-    @include desktop {
-        font-size: 16px;
-    }
-
-    @include tablet {
-        font-size: 17px;
-    }
-
+    font-size: 17px;
     
     @include mobile {
         font-size: 16px;
@@ -504,16 +492,8 @@ input[type=radio] {
 
 .summary-grand-total-sum {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 17px;
     color: $orange-dark-color;
-
-    @include desktop {
-        font-size: 16px;
-    }
-
-    @include tablet {
-        font-size: 17px;
-    }
     
     @include mobile {
         font-size: 16px;

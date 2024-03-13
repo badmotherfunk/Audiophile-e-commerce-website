@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './checkout.scss'
 
 export default function Checkout() {
@@ -189,7 +189,9 @@ export default function Checkout() {
                     <div className="summary-list">
 
                         { products.map((product, index) => (
-                            <div key={index} className="summary-items">
+
+                         <Link key={index} to={{pathname: `/${product.category}/products/${product.name}`}} state={product}>
+                            <div className="summary-items">
 
                                 <img src={product.image} alt={product.name} />
 
@@ -205,6 +207,8 @@ export default function Checkout() {
                                 </div>
 
                             </div>
+                         </Link>
+
                         ))}
                     </div>
 

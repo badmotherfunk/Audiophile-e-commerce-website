@@ -65,7 +65,8 @@ export default function Products({updateCart, cart}) {
     }
 
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart))      
+        localStorage.setItem("cart", JSON.stringify(cart)) 
+        setCounter(1)     
     }, [cart])
 
   return (
