@@ -17,7 +17,6 @@ export default function Navbar(cart, updateCart) {
   }
 
   let modalRef = useRef();
-  // let cartRef = useRef();
 
   function checkClickOutside(e) {
     if(active && !modalRef.current.contains(e.target || e.target.className === "navbar-products active")) {

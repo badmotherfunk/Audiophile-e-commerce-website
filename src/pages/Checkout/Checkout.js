@@ -10,11 +10,11 @@ export default function Checkout() {
     
     // Filtre les produits du panier >= 1
     useEffect(() => {
-        const storage = JSON.parse(localStorage.getItem("cart")) || []
+        const storage = JSON.parse(localStorage.getItem("cart"))
         setProducts(product =>
             storage.filter((item) => item.counter >= 1)
             )
-    }, [setProducts])
+    }, [])
 
     // Prévient le comportement par défaut si le panier est vide
     useEffect(() => {

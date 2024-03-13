@@ -12,10 +12,12 @@ export default function Cart({cart, cartActive, setCartActive}) {
     useEffect(() => {
         setCarteItem(cartItem =>
             cart.cart.filter((item) => item.counter >= 1)
-            )
+        )
     }, [cart])
-
-    console.log(cart)
+    
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cartItem))
+    }, [cartItem])
         
     // Gestion du prix total du panier
     const price = cartItem.map((item) => {
@@ -43,8 +45,7 @@ export default function Cart({cart, cartActive, setCartActive}) {
             cart.map((item) =>
                 name === item.name ? {...item, counter: item.counter - 1} : item
             ),
-            localStorage.setItem("cart", JSON.stringify(cart))         
-        )
+        )      
     }
 
     // Gestion du state du produit lorsque l'utilisateur incrémente
@@ -53,8 +54,7 @@ export default function Cart({cart, cartActive, setCartActive}) {
             cart.map((item) => 
                 name === item.name ? {...item, counter: item.counter + 1} : item
             ),  
-            localStorage.setItem("cart", JSON.stringify(cart))  
-        )
+        ) 
     }
 
     const handleRemove = () => {

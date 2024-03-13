@@ -16,8 +16,7 @@ export default function Products({updateCart, cart}) {
     const handleGoBack = () => {
         navigate(-1)
     }
-
-    
+  
     const [price, setPrice] = useState([])
     const [counter, setCounter] = useState(1)
     
