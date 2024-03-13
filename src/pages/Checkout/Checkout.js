@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import OrderConfirmation from '../../components/OrderConfirmation/OrderConfirmation'
 import './checkout.scss'
 
 export default function Checkout() {
@@ -7,6 +8,7 @@ export default function Checkout() {
     const navigate = useNavigate()
     const [products, setProducts] = useState([])
     const [vatPrice, setVatPrice] = useState([])
+    const [confirmationActive, setConfirmationActive] = useState(false)
     
     // Filtre les produits du panier >= 1
     useEffect(() => {
@@ -59,6 +61,12 @@ export default function Checkout() {
 
     // Calcul du prix avec TVA (arrondi) + livraison
     const grandPrice = Math.round(total) + 50
+
+    const handlePayment = () => {
+        setTimeout(() => {
+            setConfirmationActive(true)           
+        }, 500);
+    }
 
 
   return (
@@ -234,12 +242,16 @@ export default function Checkout() {
                         </div>
                     </div>
 
-                    <button className="payment-button">CONTINUE & PAY</button>
+                    <button className="payment-button" onClick={handlePayment}>CONTINUE & PAY</button>
 
                 </div>
             </div>
 
         </div>
+
+        {confirmationActive &&
+            <OrderConfirmation confirmationActive={confirmationActive} setConfirmationActive={setConfirmationActive} grandPrice={grandPrice}/>
+        }
     </div>
   )
 }
