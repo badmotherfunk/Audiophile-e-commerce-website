@@ -1,4 +1,4 @@
-import React, { useEffect, useRef} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './orderConfirmation.scss'
 
@@ -6,26 +6,16 @@ export default function OrderConfirmation(props) {
 
     const storage = JSON.parse(localStorage.getItem("cart"))
     const product = storage[0]
-
-    let modalRef = useRef();
-    const {confirmationActive, setConfirmationActive, grandPrice} = props
-    
-    function checkClickOutside(e) {
-      if(confirmationActive && modalRef.current?.contains(e.target || e.target.className === "order-confirmation__overlay")) {
-        setConfirmationActive(false)
-      }
-    }
-  
-    useEffect(() => {
-      document.addEventListener('mousedown', checkClickOutside)
-    })
-
+    const {grandPrice} = props
     const totalItems = storage.length - 1
-    console.log(totalItems)
+
+    const handleRemove = () => {
+        localStorage.removeItem("cart")
+    }
 
   return (
     <div className='order-confirmation'>
-        <div className="order-confirmation__overlay" ref={modalRef}></div>
+        <div className="order-confirmation__overlay"></div>
         <div className="order-container" >
             <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><circle fill="#D87D4A" cx="32" cy="32" r="32"/><path stroke="#FFF" strokeWidth="4" d="m20.754 33.333 6.751 6.751 15.804-15.803"/></g></svg>
             
@@ -64,7 +54,7 @@ export default function OrderConfirmation(props) {
             </div>
 
             <Link to={'/'}>
-                <button className='order-summary__button'>BACK TO HOME</button>
+                <button className='order-summary__button' onClick={handleRemove}>BACK TO HOME</button>
             </Link>
         </div>
     </div>

@@ -6,7 +6,6 @@ export default function Cart({cart, cartActive, setCartActive}) {
 
     const updateCart = cart.updateCart
     const [cartItem, setCartItem] = useState([])
-
     
     // Filtre les projets si le compteur et égal ou supérieur à 1
     useEffect(() => {
@@ -61,8 +60,7 @@ export default function Cart({cart, cartActive, setCartActive}) {
         updateCart([])
         localStorage.removeItem("cart")
     }
-
-
+    
     // Gère la fermeture de la modale cart au click sur l'overlay
     const cartRef = useRef()
 

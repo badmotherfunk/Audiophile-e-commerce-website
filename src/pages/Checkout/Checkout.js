@@ -250,7 +250,7 @@ export default function Checkout() {
         </div>
 
         {confirmationActive &&
-            <OrderConfirmation confirmationActive={confirmationActive} setConfirmationActive={setConfirmationActive} grandPrice={grandPrice}/>
+            <OrderConfirmation grandPrice={grandPrice}/>
         }
     </div>
   )

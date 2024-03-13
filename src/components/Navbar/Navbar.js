@@ -4,12 +4,21 @@ import './navbar.scss'
 import Products from '../ProductSection/ProductSection'
 import Cart from '../Cart/Cart'
 
-export default function Navbar(cart, updateCart) {
+export default function Navbar(cart) {
 
   const location = useLocation()
 
   const [active, setActive] = useState(false)
   const [cartActive, setCartActive] = useState(false)
+
+  const {updateCart} = cart
+
+  // Remet le panier à zéro si aucune donnée n'est présente dans le localStorage
+  useEffect(() => {
+    if(localStorage.length === 0 || localStorage === '[]') {
+      updateCart([])
+    }
+  })
 
   const toggleActive = () => {
     setActive(!active)
@@ -49,7 +58,6 @@ export default function Navbar(cart, updateCart) {
   const sumCount = totalProduct.reduce(
       (acc, product) => acc + product, 0
   )
-
 
   return (
     <div className='navbar' id='home'>
