@@ -62,7 +62,8 @@ export default function Checkout() {
     // Calcul du prix avec TVA (arrondi) + livraison
     const grandPrice = Math.round(total) + 50
 
-    const handlePayment = () => {
+    const handlePayment = (e) => {
+        e.preventDefault()
         setTimeout(() => {
             setConfirmationActive(true)           
         }, 500);
@@ -80,7 +81,7 @@ export default function Checkout() {
 
         <div className="checkout-container">
 
-            <div className="checkout-form">
+            <form className="checkout-form"  id='checkout-form' onSubmit={handlePayment}>
 
                 <h1 className='checkout-title'>CHECKOUT</h1>
                 <div className="checkout-billing">
@@ -188,7 +189,7 @@ export default function Checkout() {
 
                 </div>
 
-            </div>
+            </form>
 
             <div className="checkout-summary">
                 <div className="summary-content">
@@ -242,7 +243,7 @@ export default function Checkout() {
                         </div>
                     </div>
 
-                    <button className="payment-button" onClick={handlePayment}>CONTINUE & PAY</button>
+                    <button type='submit' form='checkout-form' className="payment-button" >CONTINUE & PAY</button>
 
                 </div>
             </div>
