@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import Products from './pages/Products/Products';
 import Checkout from './pages/Checkout/Checkout';
+import Error from './pages/Error/Error';
 
 function App() {
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]")
@@ -26,6 +27,7 @@ function App() {
         <Route path="/earphones" element={<Earphones />}/>
         <Route path=":slug/products/:slug" element={<Products cart={cart} updateCart={updateCart} />}/>
         <Route path="/checkout" element={<Checkout />}/>
+        <Route path="*" element={<Error />}/>
       </Routes>
       <Footer />
     </div>

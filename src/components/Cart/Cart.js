@@ -5,12 +5,12 @@ import './cart.scss'
 export default function Cart({cart, cartActive, setCartActive}) {
 
     const updateCart = cart.updateCart
-    const [cartItem, setCarteItem] = useState([])
+    const [cartItem, setCartItem] = useState([])
 
     
     // Filtre les projets si le compteur et égal ou supérieur à 1
     useEffect(() => {
-        setCarteItem(cartItem =>
+        setCartItem(cartItem =>
             cart.cart.filter((item) => item.counter >= 1)
         )
     }, [cart])
