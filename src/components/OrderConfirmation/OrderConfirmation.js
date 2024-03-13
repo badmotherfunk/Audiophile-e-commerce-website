@@ -49,12 +49,14 @@ export default function OrderConfirmation(props) {
                         </div>
                             <p className="order-summary__products__content__quantity">x{product.counter}</p>
                     </div>
-                    
-                    <div className="summary-border" ></div>
-                    <p className='other-items'>And {totalItems} other item(s)</p>
+                    {totalItems >= 1 &&
+                    <>
+                        <div className="summary-border" ></div>
+                        <p className='other-items'>And {totalItems} other item(s)</p>
+                    </>
+                    }
                 </div>
-                <div className="order-summary__grand">
-                    
+                <div className="order-summary__grand">                   
                     <p className="order-summary__grand__title">GRAND TOTAL</p>
                     <p className="order-summary__grand__price">$ {grandPrice}</p>
                 </div>
