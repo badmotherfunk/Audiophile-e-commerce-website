@@ -18,7 +18,7 @@ export default function Navbar(cart) {
     if(localStorage.length === 0 || localStorage === '[]') {
       updateCart([])
     }
-  })
+  }, [location, updateCart])
 
   const toggleActive = () => {
     setActive(!active)
