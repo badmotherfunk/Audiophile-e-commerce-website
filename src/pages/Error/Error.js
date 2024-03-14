@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import './error.scss'
 
 export default function Error() {
+
+  useEffect(() => {
+    document.title = "Audiophile - 404 Error"
+  }, [])
+
   return (
     <div className='error'>
         <div className="error-content">

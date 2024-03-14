@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './earphones.scss'
 import data from '../../data.json'
 import CardProduct from '../../components/CardProduct/CardProduct'
@@ -6,6 +6,10 @@ import Products from '../../components/ProductSection/ProductSection'
 import Branding from '../../components/Branding/Branding'
 
 export default function Earphones() {
+
+  useEffect(() => {
+    document.title = "Audiophile - Earphones"
+  }, [])
 
   const earphonesArray = data.filter((earphone) => {
     return earphone.category === "earphones"

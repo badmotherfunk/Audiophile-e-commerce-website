@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import './home.scss'
 import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
@@ -8,6 +8,10 @@ import Branding from '../../components/Branding/Branding';
 import data from '../../data.json'
 
 export default function Home() {
+
+  useEffect(() => {
+    document.title = "Audiophile - Bringing you the best audio gear"
+  }, [])
 
   const location = useLocation()
 

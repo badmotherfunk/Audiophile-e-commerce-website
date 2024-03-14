@@ -12,6 +12,15 @@ export default function Products({updateCart, cart}) {
     const location = useLocation()
     const navigate = useNavigate()
 
+    // Filtre du produit en fonction de l'url
+    const products = data.filter((product) => (
+        product.slug === location.state.slug
+    ))
+
+    useEffect(() => {
+        document.title = `Audiophile - ${products[0].subName} `
+      }, [products])
+
     // Gére le retour à la page précédente
     const handleGoBack = () => {
         navigate(-1)
@@ -19,11 +28,6 @@ export default function Products({updateCart, cart}) {
   
     const [price, setPrice] = useState([])
     const [counter, setCounter] = useState(1)
-    
-    // Filtre du produit en fonction de l'url
-    const products = data.filter((product) => (
-        product.slug === location.state.slug
-    ))
 
     // Modification de l'affichage du prix
     useEffect(() => {       

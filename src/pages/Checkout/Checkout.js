@@ -5,6 +5,10 @@ import './checkout.scss'
 
 export default function Checkout() {
 
+    useEffect(() => {
+        document.title = "Audiophile - Checkout"
+    }, [])
+
     const navigate = useNavigate()
     const [products, setProducts] = useState([])
     const [vatPrice, setVatPrice] = useState([])
