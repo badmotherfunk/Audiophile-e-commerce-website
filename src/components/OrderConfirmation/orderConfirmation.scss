@@ -28,6 +28,22 @@
     height: auto;
     border-radius: 10px;
     padding: 50px;
+
+    @include desktop {
+        padding: 40px;
+    }
+  
+    @include tablet {
+        width: 75%;
+        padding: 30px;
+        gap: 25px;
+    }
+
+    @include mobile {
+        width: 90%;
+        gap: 20px;
+        padding: 25px;
+    }
 }
 
 
@@ -37,17 +53,36 @@
     align-items: flex-start;
     gap: 25px;
 
+    @include tablet {
+        gap: 15px;
+    }
+
+    @include mobile {
+        gap: 10px;
+    }
+
     &__title {
         text-align: left;
         font-size: 30px;
         width: 80%;
         line-height: 40px;
+
+        @include mobile {
+            font-size: 22px;
+            width: 100%;
+            line-height: 33px;
+        }
     }
 
     &__text {
         color: grey;
         font-size: 16px;
         font-weight: 400;
+        text-align: left;
+
+        @include mobile {
+            font-size: 15px;
+        }
     }
 }
 
@@ -59,13 +94,12 @@
     height: auto;
     border-radius: 10px;
     position: relative;
-    // background: linear-gradient(
-    //     to right,
-    //     $grey-dark-color 0%,
-    //     $grey-dark-color 54.5%,
-    //     $black-dark-color 50%,
-    //     $black-dark-color 100%
-    //   );
+
+    @include mobile {
+        flex-direction: column;
+        position: inherit;
+    }
+
 
     &__products {
         display: flex;
@@ -77,6 +111,16 @@
         background-color: $grey-dark-color;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
+
+        @include tablet {
+            padding: 15px 15px 20px 10px;
+        }
+
+        @include mobile {
+            width: 100%;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: 10px;
+        }
     }
 
     &__products__container {
@@ -97,6 +141,10 @@
         flex-direction: row;
         align-items: center;
         gap: 15px;
+
+        @include tablet {
+            gap: 5px;
+        }
     }
 
     &__products__content__name {
@@ -112,7 +160,7 @@
 
     &__products__content__quantity {
         color: rgb(107, 107, 107);
-        font-weight: 600;
+        font-weight: 700;
     }
 
 
@@ -145,17 +193,43 @@
         height: 100%;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
+
+        @include tablet {
+            padding: 10px 10px 10px 15px;
+        }
+
+        @include mobile {
+            position: inherit;
+            width: 100%;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 20px;
+        }
     }
 
     &__order__active {
         justify-content: flex-end;
         padding-bottom: 55px;
+
+        @include mobile {
+            justify-content: center;
+            padding: 20px
+        }
     }
 
     &__grand__title {
         font-size: 16px;
         text-align: left;
         color: rgb(146, 146, 146);
+
+        @include tablet {
+            font-size: 15px;
+        }
+
+        @include mobile {
+            font-size: 17px;
+        }
     }
 
     &__grand__price {
@@ -163,6 +237,14 @@
         text-align: left;
         font-weight: 600;
         color: #FFFFFF;
+
+        @include tablet {
+            font-size: 17px;
+        }
+
+        @include mobile {
+            font-size: 19px;
+        }
     }
 
     &__products__item {
@@ -176,6 +258,10 @@
     width: 90%;
     height: 1px;
     background-color: rgb(196, 196, 196);
+    
+    @include tablet {
+        margin-top: 5px;
+    }
 }
 
 .other-items {

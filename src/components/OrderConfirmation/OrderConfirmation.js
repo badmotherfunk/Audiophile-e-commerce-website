@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './orderConfirmation.scss'
 
@@ -8,12 +8,21 @@ export default function OrderConfirmation(props) {
 
     const storage = JSON.parse(localStorage.getItem("cart"))
     const product = storage[0]
-    const {grandPrice} = props
+    const {grandPrice, confirmationActive} = props
     const totalItems = storage.length - 1
 
     const handleRemove = () => {
+        document.body.style.overflow = 'inherit'
         localStorage.removeItem("cart")
     }
+
+    console.log(confirmationActive)
+
+    useEffect(() => {
+        if(confirmationActive) {
+            document.body.style.overflow = 'hidden';
+        }
+    })
 
   return (
     <div className='order-confirmation'>

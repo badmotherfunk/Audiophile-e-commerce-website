@@ -42,12 +42,14 @@ export default function Navbar(cart) {
     if(location.pathname) {
       setCartActive(false)
       setActive(false)
+      document.body.style.overflow = 'inherit';
     }
   }, [location])
 
   const handleCart = () => {
     setCartActive(!cartActive)
     setActive(false)
+    document.body.style.overflow = 'inherit';
   }
 
   // Gestion du nombre total d'article dans le panier

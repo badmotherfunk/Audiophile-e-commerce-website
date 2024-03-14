@@ -14,9 +14,16 @@ export default function Cart({cart, cartActive, setCartActive}) {
         )
     }, [cart])
     
+    // Sauvegarde le panier dans le localStorage à chaque rendu de cartItem
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cartItem))
     }, [cartItem])
+
+    useEffect(() => {
+        if(cartActive) {
+            document.body.style.overflow = 'hidden';
+        }
+    })
         
     // Gestion du prix total du panier
     const price = cartItem.map((item) => {
@@ -67,6 +74,7 @@ export default function Cart({cart, cartActive, setCartActive}) {
     function checkClickOutsideCart(e) {
         if(cartActive && cartRef.current?.contains(e.target || e.target.className === "cart-container empty")) {
           setCartActive(false)
+          document.body.style.overflow = 'inherit';
         }
     }
     
