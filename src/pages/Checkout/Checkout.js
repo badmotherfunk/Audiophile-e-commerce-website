@@ -73,6 +73,23 @@ export default function Checkout() {
         }, 500);
     }
 
+    // Enregistrement des informations des utilisateur
+
+    const [formValues, setFormValues] = useState({
+        firstName: '',
+        phone: '',
+        email: '',
+        adress: '',
+        zipCode: '',
+        country: '',
+        city: ''
+    })
+
+    const handleChange = (e) => {
+        const {name, value} = e.target
+        setFormValues({...formValues, [name]: value})
+    }
+
 
   return (
     <div className='checkout'>
@@ -96,18 +113,45 @@ export default function Checkout() {
                         <div className="checkout-input-left">
                             <div className='checkout-input'>
                                 <label htmlFor="name">Name</label>
-                                <input type="text" id='name' placeholder='Alexei Ward' maxLength="50" required />
+                                <input 
+                                    type="text" 
+                                    id='name' 
+                                    placeholder='Alexei Ward' 
+                                    maxLength="50"
+                                    name="firstName" 
+                                    value={formValues.firstName} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
                             </div>
 
                             <div className='checkout-input'>
                                 <label htmlFor="tel">Phone Number</label>
-                                <input type="tel" id='tel' placeholder='+1 202-555-0136' maxLength="15" required />
+                                <input 
+                                    type="tel" 
+                                    id='tel' 
+                                    placeholder='+1 202-555-0136' 
+                                    maxLength="15" 
+                                    name="phone" 
+                                    value={formValues.phone} 
+                                    onChange={handleChange} 
+                                    required 
+                                />
                             </div>
                         </div>
                     
                         <div className="checkout-input-right">
-                            <label htmlFor="email">Email Address</label>
-                            <input type="text" id='email' placeholder='alexei@mail.com' maxLength="50" required />
+                            <label htmlFor="email">Email Address</label>                
+                            <input 
+                                type="text" 
+                                id='email' 
+                                placeholder='alexei@mail.com' 
+                                maxLength="50" 
+                                name="email" 
+                                value={formValues.email} 
+                                onChange={handleChange} 
+                                required 
+                            />
                         </div>
                     </div>
                 </div>
@@ -117,7 +161,16 @@ export default function Checkout() {
 
                     <div className='checkout-input'>
                         <label htmlFor="adress">Address</label>
-                        <input type="text" id='adress' placeholder='1137 Williams Avenue' maxLength="50" required />
+                        <input 
+                            type="text" 
+                            id='adress' 
+                            placeholder='1137 Williams Avenue' 
+                            maxLength="50" 
+                            name="adress" 
+                            value={formValues.adress} 
+                            onChange={handleChange} 
+                            required 
+                        />
                     </div>
 
                     <div className="checkout-shipping-info">
@@ -125,18 +178,45 @@ export default function Checkout() {
                         <div className="checkout-input-left">
                             <div className='checkout-input'>
                                 <label htmlFor="zip">ZIP Code</label>
-                                <input type="text" id='zip' placeholder='10001' maxLength="5" required />
+                                <input 
+                                    type="text" 
+                                    id='zip' 
+                                    placeholder='10001' 
+                                    maxLength="5"
+                                    name="zipCode" 
+                                    value={formValues.zipCode} 
+                                    onChange={handleChange}  
+                                    required 
+                                />
                             </div>
 
                             <div className='checkout-input'>
                                 <label htmlFor="country">Country</label>
-                                <input type="country" id='country' placeholder='United States' maxLength="25" required />
+                                <input 
+                                    type="country" 
+                                    id='country' 
+                                    placeholder='United States' 
+                                    maxLength="25" 
+                                    required 
+                                    name="country" 
+                                    value={formValues.country} 
+                                    onChange={handleChange} 
+                                />
                             </div>
                         </div>
                     
                         <div className="checkout-input-right">
                             <label htmlFor="city">City</label>
-                            <input type="text" id='city' placeholder='New York' maxLength="25" required />
+                            <input 
+                                type="text" 
+                                id='city' 
+                                placeholder='New York' 
+                                maxLength="25"
+                                name="city" 
+                                value={formValues.city} 
+                                onChange={handleChange} 
+                                required 
+                            />
                         </div>
 
                     </div>
