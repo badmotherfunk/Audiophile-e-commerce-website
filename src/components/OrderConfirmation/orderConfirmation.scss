@@ -39,15 +39,15 @@
 
     &__title {
         text-align: left;
-        font-size: 35px;
+        font-size: 30px;
         width: 80%;
         line-height: 40px;
     }
 
     &__text {
         color: grey;
-        font-size: 17px;
-        font-weight: 500;
+        font-size: 16px;
+        font-weight: 400;
     }
 }
 
@@ -56,7 +56,16 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
-    height: 155px;
+    height: auto;
+    border-radius: 10px;
+    position: relative;
+    // background: linear-gradient(
+    //     to right,
+    //     $grey-dark-color 0%,
+    //     $grey-dark-color 54.5%,
+    //     $black-dark-color 50%,
+    //     $black-dark-color 100%
+    //   );
 
     &__products {
         display: flex;
@@ -64,11 +73,10 @@
         flex-direction: column;
         justify-content: center;
         width: 60%;
+        padding: 20px;
         background-color: $grey-dark-color;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
-        padding: 20px;
-        height: 154px;
     }
 
     &__products__container {
@@ -107,14 +115,6 @@
         font-weight: 600;
     }
 
-    &__grand {
-        width: 50%;
-        background-color: $black-dark-color;
-        color: $white-light-color;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-
 
     &__button {
         background-color: $orange-dark-color;
@@ -124,6 +124,7 @@
         font-family: 'Manrope';
         font-weight: 600;
         border-radius: 2px;
+        margin-top: 10px;
     }
 
     &__button:hover {
@@ -134,9 +135,21 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        position: absolute;
+        right: 0;
         padding: 20px 20px 20px 35px;
+        width: 40%;
+        color: $white-light-color;
+        background-color: $black-dark-color;
         gap: 10px;
-        height: 154px;
+        height: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    &__order__active {
+        justify-content: flex-end;
+        padding-bottom: 55px;
     }
 
     &__grand__title {
@@ -151,6 +164,12 @@
         font-weight: 600;
         color: #FFFFFF;
     }
+
+    &__products__item {
+        display: flex;
+        flex-direction: column;
+        background-color: $grey-dark-color;
+    }
 }
 
 .summary-border {
@@ -164,8 +183,15 @@
     font-weight: 600;
     margin-top: 15px;
     font-size: 14px;
+    cursor: pointer;
+    height: 22px;
+}
+
+.other-items:hover {
+    border-bottom: 1px solid grey;
 }
 
 .order-confirmation a {
     width: 100%;
 }
+
