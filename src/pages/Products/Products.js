@@ -67,10 +67,14 @@ export default function Products({updateCart, cart}) {
         }
     }
 
+    // Sauvegarde le panier dans le local storage dés qu"il y a un changement dans 'cart' et remet les compteurs à zéro
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart)) 
-        setCounter(1)     
-    }, [cart])
+        setCounter(1)
+        if(!location.pathname) {
+            setCounter(1)
+        }     
+    }, [cart, location])
 
   return (
     <div className='products'>

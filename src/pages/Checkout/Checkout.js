@@ -14,6 +14,7 @@ export default function Checkout() {
     const [vatPrice, setVatPrice] = useState([])
     const [confirmationActive, setConfirmationActive] = useState(false)
     const [error, setError] = useState({})
+    const [errorValidation, setErrorValidation] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
     
     // Filtre les produits du panier >= 1
@@ -68,6 +69,7 @@ export default function Checkout() {
     // Calcul du prix avec TVA (arrondi) + livraison
     const grandPrice = Math.round(total) + 50
 
+
     // Enregistrement des informations des utilisateur
     const [formValues, setFormValues] = useState({
         fullName: '',
@@ -91,85 +93,125 @@ export default function Checkout() {
     const handleSubmit = (e) => {
         e.preventDefault()
         setError(validate(formValues))
-        setIsSubmit(true)
+        setErrorValidation(validation(formValues))
+
+        // Vérifie si il n'y a pas d'erreur et si tous les inputs ont bien été remplis
+        if(Object.keys(error).length === 0 &&
+            Object.keys(errorValidation).length === 0 &&
+            Object.values(formValues).filter(value => !value).length === 0) {
+            
+            setIsSubmit(true)
+        }
     }
 
     // Affiche le récapitulatif de la commande si les inputs sont bien remplis && isSubmit === true
     useEffect(() => {
-        if(Object.keys(error).length === 0 && isSubmit) {
+        if(isSubmit) {
             setTimeout(() => {
                 setConfirmationActive(true)           
             }, 500);
         }
-    }, [error, isSubmit, formValues])
+    }, [error, isSubmit, formValues, errorValidation])
 
     const validate = (values) => {
         const errors = {}
-        const regexText = /^[a-zA-ZÀ-ÿ]{2,40}( [a-zA-ZÀ-ÿ]{2,40})+$/;
-        const regexLocation = /^[a-zA-ZÀ-ÿ.-]+$/;
-        const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-        const regexNumber = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
-        const regexAdress = /^(\d+) ?([A-Za-z](?= ))? (.*?) ([^ ]+?) ?((?<= )APT)? ?((?<= )\d*)?$/;
-
+    
         if(!values.fullName) {
             errors.fullName = "Name is required"
-        } else if (!regexText.test(values.fullName)) {
-            errors.fullName = "Wrong format"
         }
 
         if(!values.phone) {
             errors.phone = "Phone is required"
-        } else if (!regexNumber.test(values.phone)) {
-            errors.phone = "Wrong format"
         }
 
         if(!values.email) {
             errors.email = "Email is required"
-        } else if (!regexEmail.test(values.email)) {
-            errors.email = "Wrong format"
         }
 
         if(!values.adress) {
             errors.adress = "Adress is required"
-        } else if (!regexAdress.test(values.adress) ) {
-            errors.adress = "Wrong format"
         }
 
         if(!values.zipCode) {
             errors.zipCode = "Zip Code is required"
-        } else if (!regexNumber.test(values.zipCode)) {
-            errors.zipCode = "Wrong format"
         }
 
         if(!values.country) {
             errors.country = "Country is required"
-        } else if (!regexLocation.test(values.country)) {
-            errors.country = "Wrong format"
         }
 
         if(!values.city) {
             errors.city = "City is required"
-        } else if (!regexLocation.test(values.city)) {
-            errors.city = "Wrong format"
         }
 
         if(isChecked === 'option-1') {
             
             if(!values.eMoneyNumber) {
                 errors.eMoneyNumber = "Required"
-            } else if (!regexNumber.test(values.eMoneyNumber)) {
-                errors.eMoneyNumber = "Wrong format"
             }
             
             if(!values.eMoneyPin) {
                 errors.eMoneyPin = "Required"
-            } else if (!regexNumber.test(values.eMoneyPin)) {
-                errors.eMoneyPin = "Wrong format"
             }
         }
 
         return errors
     }
+
+    const handleValidation = () => {
+        setError(validation(formValues))
+        setErrorValidation(validation(formValues))
+    }
+
+    const validation = (values) => {
+            const errors = {}
+            const regexText = /^[a-zA-ZÀ-ÿ]{2,40}( [a-zA-ZÀ-ÿ]{2,40})+$/;
+            const regexLocation = /^[a-zA-ZÀ-ÿ.-]+$/;
+            const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+            const regexNumber = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
+            const regexAdress = /^(\d+) ?([A-Za-z](?= ))? (.*?) ([^ ]+?) ?((?<= )APT)? ?((?<= )\d*)?$/;
+    
+            if (!regexText.test(values.fullName) && values.fullName.length > 0) {
+                errors.fullName = "Wrong format"
+            }
+    
+            if (!regexNumber.test(values.phone) && values.phone.length > 0) {
+                errors.phone = "Wrong format"
+            }
+    
+            if(!regexEmail.test(values.email) && values.email.length > 0) {
+                errors.email = "Wrong format"
+            }
+    
+            if(!regexAdress.test(values.adress) && values.adress.length > 0) {
+                errors.adress = "Wrong format"
+            }
+    
+            if(!regexNumber.test(values.zipCode) && values.zipCode.length > 0) {
+                errors.zipCode = "Wrong format"
+            }
+    
+            if(!regexLocation.test(values.country) && values.country.length > 0) {
+                errors.country = "Wrong format"
+            }
+    
+            if(!regexLocation.test(values.city) && values.city.length > 0) {
+                errors.city = "Wrong format"
+            }
+    
+            if(isChecked === 'option-1') {
+                
+                if(!regexNumber.test(values.eMoneyNumber) && values.eMoneyNumber.length > 0) {
+                    errors.eMoneyNumber = "Wrong format"
+                }
+                
+                if(!regexNumber.test(values.eMoneyPin) && values.eMoneyPin.length > 0) {
+                    errors.eMoneyPin = "Wrong format"
+                }
+            }
+    
+            return errors
+        }
 
 
   return (
@@ -193,7 +235,7 @@ export default function Checkout() {
 
                         <div className="checkout-input-left">
                             <div className='checkout-input'>
-                                <label htmlFor="name">Name</label>
+                                <label htmlFor="name" className={error.fullName|| errorValidation.fullName ? "errorLabel" : ""}>Name</label>
                                 <input 
                                     type="text" 
                                     id='name' 
@@ -201,14 +243,16 @@ export default function Checkout() {
                                     maxLength="50"
                                     name="fullName"
                                     value={formValues.fullName} 
-                                    onChange={handleChange} 
-                                    // required 
+                                    onChange={handleChange}
+                                    onBlur={handleValidation}
+                                    className={error.fullName|| errorValidation.fullName ? "errorInput" : ""} 
+
                                 />
-                                <p className='errors'>{error.fullName}</p>
+                                <p className='errors'>{error.fullName || errorValidation.fullName}</p>
                             </div>
 
                             <div className='checkout-input'>
-                                <label htmlFor="tel">Phone Number</label>
+                                <label htmlFor="tel" className={error.phone || errorValidation.phone ? "errorLabel" : ""}>Phone Number</label>
                                 <input 
                                     type="tel" 
                                     id='tel' 
@@ -216,15 +260,16 @@ export default function Checkout() {
                                     maxLength="15"
                                     name="phone" 
                                     value={formValues.phone} 
-                                    onChange={handleChange} 
-                                    // required 
+                                    onChange={handleChange}
+                                    onBlur={handleValidation}
+                                    className={error.phone || errorValidation.phone ? "errorInput" : ""} 
                                 />
-                                <p className='errors'>{error.phone}</p>
+                                <p className='errors'>{error.phone || errorValidation.phone}</p>
                             </div>
                         </div>
                     
                         <div className="checkout-input-right">
-                            <label htmlFor="email">Email Address</label>                
+                            <label htmlFor="email" className={error.email || errorValidation.email ? "errorLabel" : ""}>Email Address</label>                
                             <input 
                                 type="text" 
                                 id='email' 
@@ -233,9 +278,10 @@ export default function Checkout() {
                                 name="email" 
                                 value={formValues.email} 
                                 onChange={handleChange} 
-                                // required 
+                                onBlur={handleValidation}
+                                className={error.email || errorValidation.email ? "errorInput" : ""} 
                             />
-                            <p className='errors'>{error.email}</p>
+                            <p className='errors'>{error.email || errorValidation.email}</p>
                         </div>
                     </div>
                 </div>
@@ -244,7 +290,7 @@ export default function Checkout() {
                     <p className='checkout-subtitle'>SHIPPING INFO</p>
 
                     <div className='checkout-input'>
-                        <label htmlFor="adress">Address</label>
+                        <label htmlFor="adress" className={error.adress || errorValidation.adress ? "errorLabel" : ""}>Address</label>
                         <input 
                             type="text" 
                             id='adress' 
@@ -252,17 +298,18 @@ export default function Checkout() {
                             maxLength="50" 
                             name="adress" 
                             value={formValues.adress} 
-                            onChange={handleChange} 
-                            // required 
+                            onChange={handleChange}
+                            onBlur={handleValidation}
+                            className={error.adress || errorValidation.adress ? "errorInput" : ""} 
                         />
-                        <p className='errors'>{error.adress}</p>
+                        <p className='errors'>{error.adress || errorValidation.adress}</p>
                     </div>
 
                     <div className="checkout-shipping-info">
                         
                         <div className="checkout-input-left">
                             <div className='checkout-input'>
-                                <label htmlFor="zip">ZIP Code</label>
+                                <label htmlFor="zip" className={error.zipCode || errorValidation.zipCode ? "errorLabel" : ""}>ZIP Code</label>
                                 <input 
                                     type="text" 
                                     id='zip' 
@@ -270,30 +317,32 @@ export default function Checkout() {
                                     maxLength="5"
                                     name="zipCode" 
                                     value={formValues.zipCode} 
-                                    onChange={handleChange}  
-                                    // required 
+                                    onChange={handleChange}
+                                    onBlur={handleValidation}
+                                    className={error.zipCode || errorValidation.zipCode ? "errorInput" : ""}
                                 />
-                                <p className='errors'>{error.zipCode}</p>
+                                <p className='errors'>{error.zipCode || errorValidation.zipCode}</p>
                             </div>
 
                             <div className='checkout-input'>
-                                <label htmlFor="country">Country</label>
+                                <label htmlFor="country" className={error.country || errorValidation.country ? "errorLabel" : ""}>Country</label>
                                 <input 
                                     type="country" 
                                     id='country' 
                                     placeholder='United States' 
                                     maxLength="25" 
                                     name="country" 
-                                    value={formValues.country} 
-                                    onChange={handleChange} 
-                                    // required 
+                                    value={formValues.country || errorValidation.country} 
+                                    onChange={handleChange}
+                                    onBlur={handleValidation}
+                                    className={error.country ? "errorInput" : ""} 
                                 />
-                                <p className='errors'>{error.country}</p>
+                                <p className='errors'>{error.country || errorValidation.country}</p>
                             </div>
                         </div>
                     
                         <div className="checkout-input-right">
-                            <label htmlFor="city">City</label>
+                            <label htmlFor="city" className={error.city || errorValidation.city ? "errorLabel" : ""}>City</label>
                             <input 
                                 type="text" 
                                 id='city' 
@@ -301,10 +350,11 @@ export default function Checkout() {
                                 maxLength="25"
                                 name="city" 
                                 value={formValues.city} 
-                                onChange={handleChange} 
-                                // required 
+                                onChange={handleChange}
+                                onBlur={handleValidation}
+                                className={error.city || errorValidation.city ? "errorInput" : ""} 
                             />
-                            <p className='errors'>{error.city}</p>
+                            <p className='errors'>{error.city || errorValidation.city}</p>
                         </div>
 
                     </div>
@@ -328,7 +378,7 @@ export default function Checkout() {
                                     id='e-money' 
                                     name='payment-method' 
                                     value="option-1" 
-                                    onChange={handleOptionChange} 
+                                    onChange={handleOptionChange}
                                     defaultChecked 
                                 />
                                 <label htmlFor="e-money">e-Money</label>
@@ -352,7 +402,7 @@ export default function Checkout() {
                  
                         <div className="payment-method-information">
                             <div className="checkout-input">
-                                <label htmlFor="number">e-Money Number</label>
+                                <label htmlFor="number" className={error.eMoneyNumber || errorValidation.eMoneyNumber ? "errorLabel" : ""}>e-Money Number</label>
                                 <input 
                                     type="text" 
                                     id='number'
@@ -361,13 +411,14 @@ export default function Checkout() {
                                     maxLength="9"
                                     value={formValues.eMoneyNumber} 
                                     onChange={handleChange}
-                                    // required 
+                                    onBlur={handleValidation}
+                                    className={error.eMoneyNumber || errorValidation.eMoneyNumber ? "errorInput" : ""}
                                 />
-                                <p className='errors'>{error.eMoneyNumber}</p>
+                                <p className='errors'>{error.eMoneyNumber || errorValidation.eMoneyNumber}</p>
                             </div>
                             
                             <div className="checkout-input">
-                                <label htmlFor="number">e-Money PIN</label>
+                                <label htmlFor="number" className={error.eMoneyPin || errorValidation.eMoneyPin ? "errorLabel" : ""}>e-Money PIN</label>
                                 <input 
                                     type="text" 
                                     id='number'
@@ -375,10 +426,11 @@ export default function Checkout() {
                                     placeholder='6891' 
                                     maxLength="4"
                                     value={formValues.eMoneyPin} 
-                                    onChange={handleChange} 
-                                    // required 
+                                    onChange={handleChange}
+                                    onBlur={handleValidation}
+                                    className={error.eMoneyPin || errorValidation.eMoneyPin ? "errorInput" : ""} 
                                 />
-                                <p className='errors'>{error.eMoneyPin}</p>
+                                <p className='errors'>{error.eMoneyPin || errorValidation.eMoneyPin}</p>
                             </div>
                         </div>
                     }
@@ -448,7 +500,7 @@ export default function Checkout() {
                         </div>
                     </div>
 
-                    <button type='submit' form='checkout-form' className="payment-button" >CONTINUE & PAY</button>
+                    <button type='submit' form='checkout-form' className="payment-button">CONTINUE & PAY</button>
 
                 </div>
             </div>

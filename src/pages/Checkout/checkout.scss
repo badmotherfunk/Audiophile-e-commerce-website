@@ -100,7 +100,7 @@
 label {
     font-weight: 700;
     font-size: 13px;
-    text-align: left
+    text-align: left;
 }
 
 input {
@@ -138,6 +138,14 @@ input:focus {
 
 ::placeholder {
     color: rgb(151, 151, 151);
+}
+
+.errorLabel {
+    color: rgb(202, 0, 0);
+}
+
+.errorInput {
+    border: 2px solid rgb(202, 0, 0);
 }
 
 .checkout-input {
