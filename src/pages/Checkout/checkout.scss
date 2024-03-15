@@ -123,6 +123,15 @@ input {
     }
 }
 
+.errors {
+    color: rgb(202, 0, 0);
+    font-weight: 500;
+    font-size: 13px;
+    position: absolute;
+    font-weight: 600;
+    right: 0;
+}
+
 input:focus {
     border: 1px solid $orange-dark-color;
 }
@@ -136,6 +145,7 @@ input:focus {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    position: relative;
 }
 
 .checkout-input-left {
@@ -144,6 +154,7 @@ input:focus {
     align-items: flex-start;
     width: 50%;
     gap: 25px;
+    position: relative;
 
     @include mobile {
         width: 100%;
@@ -155,6 +166,7 @@ input:focus {
     flex-direction: column;
     align-items: flex-start;
     width: 50%;
+    position: relative;
 
     @include mobile {
         width: 100%;

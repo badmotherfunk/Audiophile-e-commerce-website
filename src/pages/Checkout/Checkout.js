@@ -13,6 +13,8 @@ export default function Checkout() {
     const [products, setProducts] = useState([])
     const [vatPrice, setVatPrice] = useState([])
     const [confirmationActive, setConfirmationActive] = useState(false)
+    const [error, setError] = useState({})
+    const [isSubmit, setIsSubmit] = useState(false)
     
     // Filtre les produits du panier >= 1
     useEffect(() => {
@@ -66,28 +68,107 @@ export default function Checkout() {
     // Calcul du prix avec TVA (arrondi) + livraison
     const grandPrice = Math.round(total) + 50
 
-    const handlePayment = (e) => {
-        e.preventDefault()
-        setTimeout(() => {
-            setConfirmationActive(true)           
-        }, 500);
-    }
-
     // Enregistrement des informations des utilisateur
-
     const [formValues, setFormValues] = useState({
-        firstName: '',
+        fullName: '',
         phone: '',
         email: '',
         adress: '',
         zipCode: '',
         country: '',
-        city: ''
+        city: '',
+        eMoneyNumber: '',
+        eMoneyPin: ''
     })
 
+    // Récupère la paire clé valeur des inputs et l'ajoute au state formValues
     const handleChange = (e) => {
         const {name, value} = e.target
         setFormValues({...formValues, [name]: value})
+    }
+    
+    // Vérifie si les conditions des inputs sont valides à la soumission du formulaire
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setError(validate(formValues))
+        setIsSubmit(true)
+    }
+
+    // Affiche le récapitulatif de la commande si les inputs sont bien remplis && isSubmit === true
+    useEffect(() => {
+        if(Object.keys(error).length === 0 && isSubmit) {
+            setTimeout(() => {
+                setConfirmationActive(true)           
+            }, 500);
+        }
+    }, [error, isSubmit, formValues])
+
+    const validate = (values) => {
+        const errors = {}
+        const regexText = /^[a-zA-ZÀ-ÿ]{2,40}( [a-zA-ZÀ-ÿ]{2,40})+$/;
+        const regexLocation = /^[a-zA-ZÀ-ÿ.-]+$/;
+        const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        const regexNumber = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
+        const regexAdress = /^(\d+) ?([A-Za-z](?= ))? (.*?) ([^ ]+?) ?((?<= )APT)? ?((?<= )\d*)?$/;
+
+        if(!values.fullName) {
+            errors.fullName = "Name is required"
+        } else if (!regexText.test(values.fullName)) {
+            errors.fullName = "Wrong format"
+        }
+
+        if(!values.phone) {
+            errors.phone = "Phone is required"
+        } else if (!regexNumber.test(values.phone)) {
+            errors.phone = "Wrong format"
+        }
+
+        if(!values.email) {
+            errors.email = "Email is required"
+        } else if (!regexEmail.test(values.email)) {
+            errors.email = "Wrong format"
+        }
+
+        if(!values.adress) {
+            errors.adress = "Adress is required"
+        } else if (!regexAdress.test(values.adress) ) {
+            errors.adress = "Wrong format"
+        }
+
+        if(!values.zipCode) {
+            errors.zipCode = "Zip Code is required"
+        } else if (!regexNumber.test(values.zipCode)) {
+            errors.zipCode = "Wrong format"
+        }
+
+        if(!values.country) {
+            errors.country = "Country is required"
+        } else if (!regexLocation.test(values.country)) {
+            errors.country = "Wrong format"
+        }
+
+        if(!values.city) {
+            errors.city = "City is required"
+        } else if (!regexLocation.test(values.city)) {
+            errors.city = "Wrong format"
+        }
+
+        if(isChecked === 'option-1') {
+            
+            if(!values.eMoneyNumber) {
+                errors.eMoneyNumber = "Required"
+            } else if (!regexNumber.test(values.eMoneyNumber)) {
+                errors.eMoneyNumber = "Wrong format"
+            }
+            
+            if(!values.eMoneyPin) {
+                errors.eMoneyPin = "Required"
+            } else if (!regexNumber.test(values.eMoneyPin)) {
+                errors.eMoneyPin = "Wrong format"
+            }
+        }
+
+        return errors
     }
 
 
@@ -102,7 +183,7 @@ export default function Checkout() {
 
         <div className="checkout-container">
 
-            <form className="checkout-form"  id='checkout-form' onSubmit={handlePayment}>
+            <form className="checkout-form"  id='checkout-form' onSubmit={handleSubmit}>
 
                 <h1 className='checkout-title'>CHECKOUT</h1>
                 <div className="checkout-billing">
@@ -118,11 +199,12 @@ export default function Checkout() {
                                     id='name' 
                                     placeholder='Alexei Ward' 
                                     maxLength="50"
-                                    name="firstName" 
-                                    value={formValues.firstName} 
+                                    name="fullName"
+                                    value={formValues.fullName} 
                                     onChange={handleChange} 
-                                    required 
+                                    // required 
                                 />
+                                <p className='errors'>{error.fullName}</p>
                             </div>
 
                             <div className='checkout-input'>
@@ -131,12 +213,13 @@ export default function Checkout() {
                                     type="tel" 
                                     id='tel' 
                                     placeholder='+1 202-555-0136' 
-                                    maxLength="15" 
+                                    maxLength="15"
                                     name="phone" 
                                     value={formValues.phone} 
                                     onChange={handleChange} 
-                                    required 
+                                    // required 
                                 />
+                                <p className='errors'>{error.phone}</p>
                             </div>
                         </div>
                     
@@ -146,12 +229,13 @@ export default function Checkout() {
                                 type="text" 
                                 id='email' 
                                 placeholder='alexei@mail.com' 
-                                maxLength="50" 
+                                maxLength="50"
                                 name="email" 
                                 value={formValues.email} 
                                 onChange={handleChange} 
-                                required 
+                                // required 
                             />
+                            <p className='errors'>{error.email}</p>
                         </div>
                     </div>
                 </div>
@@ -169,8 +253,9 @@ export default function Checkout() {
                             name="adress" 
                             value={formValues.adress} 
                             onChange={handleChange} 
-                            required 
+                            // required 
                         />
+                        <p className='errors'>{error.adress}</p>
                     </div>
 
                     <div className="checkout-shipping-info">
@@ -186,8 +271,9 @@ export default function Checkout() {
                                     name="zipCode" 
                                     value={formValues.zipCode} 
                                     onChange={handleChange}  
-                                    required 
+                                    // required 
                                 />
+                                <p className='errors'>{error.zipCode}</p>
                             </div>
 
                             <div className='checkout-input'>
@@ -197,11 +283,12 @@ export default function Checkout() {
                                     id='country' 
                                     placeholder='United States' 
                                     maxLength="25" 
-                                    required 
                                     name="country" 
                                     value={formValues.country} 
                                     onChange={handleChange} 
+                                    // required 
                                 />
+                                <p className='errors'>{error.country}</p>
                             </div>
                         </div>
                     
@@ -215,8 +302,9 @@ export default function Checkout() {
                                 name="city" 
                                 value={formValues.city} 
                                 onChange={handleChange} 
-                                required 
+                                // required 
                             />
+                            <p className='errors'>{error.city}</p>
                         </div>
 
                     </div>
@@ -235,12 +323,25 @@ export default function Checkout() {
                         <div className="payment-method-input">
                         
                             <div className="e-money">
-                                <input type="radio" id='e-money' name='payment-method' value="option-1" onChange={handleOptionChange} defaultChecked />
+                                <input 
+                                    type="radio" 
+                                    id='e-money' 
+                                    name='payment-method' 
+                                    value="option-1" 
+                                    onChange={handleOptionChange} 
+                                    defaultChecked 
+                                />
                                 <label htmlFor="e-money">e-Money</label>
                             </div>
 
                             <div className="cash-delivery">
-                                <input type="radio" id='cash-delivery' name='payment-method' value="option-2" onChange={handleOptionChange}/>
+                                <input 
+                                    type="radio" 
+                                    id='cash-delivery' 
+                                    name='payment-method' 
+                                    value="option-2" 
+                                    onChange={handleOptionChange}
+                                />
                                 <label htmlFor="cash-delivery">Cash on Delivery</label>
                             </div>
                         </div>
@@ -252,12 +353,32 @@ export default function Checkout() {
                         <div className="payment-method-information">
                             <div className="checkout-input">
                                 <label htmlFor="number">e-Money Number</label>
-                                <input type="text" id='number' placeholder='238521993' maxLength="9" required />
+                                <input 
+                                    type="text" 
+                                    id='number'
+                                    name='eMoneyNumber'  
+                                    placeholder='238521993' 
+                                    maxLength="9"
+                                    value={formValues.eMoneyNumber} 
+                                    onChange={handleChange}
+                                    // required 
+                                />
+                                <p className='errors'>{error.eMoneyNumber}</p>
                             </div>
                             
                             <div className="checkout-input">
                                 <label htmlFor="number">e-Money PIN</label>
-                                <input type="text" id='number' placeholder='6891' maxLength="4" required />
+                                <input 
+                                    type="text" 
+                                    id='number'
+                                    name='eMoneyPin' 
+                                    placeholder='6891' 
+                                    maxLength="4"
+                                    value={formValues.eMoneyPin} 
+                                    onChange={handleChange} 
+                                    // required 
+                                />
+                                <p className='errors'>{error.eMoneyPin}</p>
                             </div>
                         </div>
                     }
