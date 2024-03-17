@@ -111,7 +111,7 @@ export default function Cart({cart, cartActive, setCartActive}) {
                             <div className="cart-list">
 
                             {cartItem.map((item, index) => (
-                                <div className="cart-products">
+                                <div key={index} className="cart-products">
                                     <Link to={{pathname: `/${item.category}/products/${item.name}`}} state={item}>
                                         <div key={index} className="cart-products__item">
                                             <img src={item.image} alt={item.name} />
