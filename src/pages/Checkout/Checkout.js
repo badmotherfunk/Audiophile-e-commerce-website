@@ -200,6 +200,7 @@ export default function Checkout() {
     }
 
     const handleValidation = () => {
+        setError(validate(formValues))
         setErrorValidation(validation(formValues))
     }
 
