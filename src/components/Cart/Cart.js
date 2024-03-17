@@ -4,8 +4,6 @@ import './cart.scss'
 
 export default function Cart({cart, cartActive, setCartActive}) {
 
-    console.log(cart)
-
     const updateCart = cart.updateCart
     const [cartItem, setCartItem] = useState([])
     const [formattedPrice, setFormattedPrice] = useState([])
@@ -113,9 +111,9 @@ export default function Cart({cart, cartActive, setCartActive}) {
                             <div className="cart-list">
 
                             {cartItem.map((item, index) => (
-                                <div key={index} className="cart-products">
+                                <div className="cart-products">
                                     <Link to={{pathname: `/${item.category}/products/${item.name}`}} state={item}>
-                                        <div className="cart-products__item">
+                                        <div key={index} className="cart-products__item">
                                             <img src={item.image} alt={item.name} />
                                             <div className="cart-products__content">
                                                 <p className="cart-products__content__title">{item.subName}</p>
