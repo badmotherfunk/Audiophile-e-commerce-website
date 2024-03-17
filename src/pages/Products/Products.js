@@ -26,7 +26,7 @@ export default function Products({updateCart, cart}) {
         navigate(-1)
     }
   
-    const [price, setPrice] = useState([])
+    const [formattedPrice, setFormattedPrice] = useState([])
     const [counter, setCounter] = useState(1)
 
     // Modification de l'affichage du prix
@@ -34,9 +34,9 @@ export default function Products({updateCart, cart}) {
         let currentPrice = products[0].price.toString()
         if(currentPrice > 999) {
             const newPrice = `${currentPrice.slice(0, 1)}${','}${currentPrice.slice(1)}`
-            setPrice(newPrice)
+            setFormattedPrice(newPrice)
         } else if (currentPrice < 1000) {
-            setPrice(products[0].price)
+            setFormattedPrice(products[0].price)
         }
     }, [products])
     
@@ -59,11 +59,11 @@ export default function Products({updateCart, cart}) {
             )
             updateCart([
                 ...filteredCurrentProduct,
-                {name, price, image, slug, category, subName, counter: currentProduct.counter + counter}
+                {name, price, image, slug, category, subName, counter: currentProduct.counter + counter, formattedPrice: formattedPrice}
             ])
         // Sinon, on ajoute toutes les infos du produit    
         } else {
-            updateCart([...cart, {counter, name, price, image, slug, category, subName}])
+            updateCart([...cart, {counter, name, price, image, slug, category, subName, formattedPrice: formattedPrice}])
         }
     }
 
@@ -103,7 +103,7 @@ export default function Products({updateCart, cart}) {
                             <h3 className="item-title">{product.name}</h3>
                             <p className="item-description">{product.description}</p>
 
-                            <p className="price">$ {price}</p>
+                            <p className="price">$ {formattedPrice}</p>
 
                             <div className="add-cart-container">
                                 <div className="counter">
@@ -169,7 +169,7 @@ export default function Products({updateCart, cart}) {
                                     <img src={item.image.desktop} alt={item.name} />
                                 </picture>
                                 <h5 className='also-like__text'>{item.name}</h5>
-                                <ButtonFilled props={item} />
+                                <ButtonFilled props={item}/>
                             </div>
                         ))}
                     </div>

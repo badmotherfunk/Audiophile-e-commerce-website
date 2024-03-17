@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import OrderConfirmation from '../../components/OrderConfirmation/OrderConfirmation'
 import './checkout.scss'
 
@@ -9,6 +9,9 @@ export default function Checkout() {
         document.title = "Audiophile - Checkout"
     }, [])
 
+    const location = useLocation()
+    const formattedTotalPrice = location.state
+
     const navigate = useNavigate()
     const [products, setProducts] = useState([])
     const [vatPrice, setVatPrice] = useState([])
@@ -16,6 +19,7 @@ export default function Checkout() {
     const [error, setError] = useState({})
     const [errorValidation, setErrorValidation] = useState({})
     const [isSubmit, setIsSubmit] = useState(false)
+    const [grandPriceFormatted, setGrandPriceFormatted] = useState([])
     
     // Filtre les produits du panier >= 1
     useEffect(() => {
@@ -56,18 +60,37 @@ export default function Checkout() {
         (acc, product) => acc + product, 0
     )
 
-    // Calcul de la TVA inclue dans le prix
+    // Calcul de la TVA inclue dans le prix, et formattage de la TVA
     useEffect(() => {
         let price = total * 1.20
         const subPrice = price - total
         
         const subTotal = Math.floor(subPrice)
-        
-        setVatPrice(subTotal)
+
+        let currentPrice = subTotal.toString()
+        if(currentPrice > 999) {
+            const newPrice = `${currentPrice.slice(0, 1)}${','}${currentPrice.slice(1)}`
+            setVatPrice(newPrice)
+        } else if (currentPrice < 1000) {
+            setVatPrice(subTotal)
+        }
+
     }, [total])
 
-    // Calcul du prix avec TVA (arrondi) + livraison
-    const grandPrice = Math.round(total) + 50
+
+    // Calcul du prix + livraison, et formattage du prix total du panier
+    useEffect(()=> {
+        // Calcul du prix avec TVA (arrondi) + livraison
+        const grandPrice = Math.round(total) + 50
+
+        let currentGrandPrice = grandPrice.toString()
+        if(currentGrandPrice > 999) {
+            const newGrandPrice = `${currentGrandPrice.slice(0, 1)}${','}${currentGrandPrice.slice(1)}`
+            setGrandPriceFormatted(newGrandPrice)
+        } else if (currentGrandPrice < 1000) {
+            setGrandPriceFormatted(grandPrice)
+        }
+    }, [total])
 
 
     // Enregistrement des informations des utilisateur
@@ -88,6 +111,16 @@ export default function Checkout() {
         const {name, value} = e.target
         setFormValues({...formValues, [name]: value})
     }
+
+    const allowed = ['fullName', 'phone', 'email', 'adress', 'zipCode', 'country', 'city']
+
+    const filtered = Object.keys(formValues)
+        .filter(key => allowed.includes(key))
+        .reduce((obj, key) => {
+            obj[key] = formValues[key];
+        return obj;
+    }, {});
+
     
     // Vérifie si les conditions des inputs sont valides à la soumission du formulaire
     const handleSubmit = (e) => {
@@ -98,11 +131,19 @@ export default function Checkout() {
         // Vérifie si il n'y a pas d'erreur et si tous les inputs ont bien été remplis
         if(Object.keys(error).length === 0 &&
             Object.keys(errorValidation).length === 0 &&
-            Object.values(formValues).filter(value => !value).length === 0) {
-            
+            Object.values(formValues).filter(value => !value).length === 0 &&
+            isChecked === "option-1") {
+         
+            setIsSubmit(true)
+        } if(Object.keys(error).length === 0 &&
+            Object.keys(errorValidation).length === 0 &&
+            Object.values(filtered).filter(value => !value).length === 0 &&
+            isChecked === "option-2") {
+     
             setIsSubmit(true)
         }
-    }
+    }   
+
 
     // Affiche le récapitulatif de la commande si les inputs sont bien remplis && isSubmit === true
     useEffect(() => {
@@ -159,7 +200,6 @@ export default function Checkout() {
     }
 
     const handleValidation = () => {
-        setError(validation(formValues))
         setErrorValidation(validation(formValues))
     }
 
@@ -464,7 +504,7 @@ export default function Checkout() {
                                 <div className="summary-item-content">
                                     <div className="summary-item-information">
                                         <p className='summary-item-title'>{product.subName}</p>
-                                        <p className='summary-item-price'>$ {product.price}</p>
+                                        <p className='summary-item-price'>$ {product.formattedPrice}</p>
                                     </div>
 
                                     <div className="summary-item-quantity">
@@ -481,7 +521,7 @@ export default function Checkout() {
                     <div className="summary-payment-information">
                         <div className="summary-total">
                             <p className='summary-total-title'>TOTAL</p>
-                            <p className='summary-total-sum'>$ {total}</p>
+                            <p className='summary-total-sum'>$ {formattedTotalPrice}</p>
                         </div>
 
                         <div className="summary-total">
@@ -496,7 +536,7 @@ export default function Checkout() {
 
                         <div className="summary-total">
                             <p className='summary-total-title'>GRAND TOTAL</p>
-                            <p className='summary-grand-total-sum'>$ {grandPrice}</p>
+                            <p className='summary-grand-total-sum'>$ {grandPriceFormatted}</p>
                         </div>
                     </div>
 
@@ -508,7 +548,7 @@ export default function Checkout() {
         </div>
 
         {confirmationActive &&
-            <OrderConfirmation grandPrice={grandPrice} confirmationActive={confirmationActive}/>
+            <OrderConfirmation grandPriceFormatted={grandPriceFormatted} confirmationActive={confirmationActive}/>
         }
     </div>
   )

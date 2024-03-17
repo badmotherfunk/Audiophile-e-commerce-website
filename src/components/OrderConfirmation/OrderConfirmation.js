@@ -8,15 +8,13 @@ export default function OrderConfirmation(props) {
 
     const storage = JSON.parse(localStorage.getItem("cart"))
     const product = storage[0]
-    const {grandPrice, confirmationActive} = props
+    const {grandPriceFormatted, confirmationActive} = props
     const totalItems = storage.length - 1
 
     const handleRemove = () => {
         document.body.style.overflow = 'inherit'
         localStorage.removeItem("cart")
     }
-
-    console.log(confirmationActive)
 
     useEffect(() => {
         if(confirmationActive) {
@@ -46,7 +44,7 @@ export default function OrderConfirmation(props) {
                                 <img src={product.image} alt={product.name} />
                                 <div className="order-summary__products__content">
                                     <p className="order-summary__products__content__name">{product.subName}</p>
-                                    <p className="order-summary__products__content__price">$ {product.price}</p>
+                                    <p className="order-summary__products__content__price">$ {product.formattedPrice}</p>
                                 </div>
                             </div>
                             <p className="order-summary__products__content__quantity">x{product.counter}</p>
@@ -60,7 +58,7 @@ export default function OrderConfirmation(props) {
                     </div>
                     <div className="order-summary__grand">                   
                         <p className="order-summary__grand__title">GRAND TOTAL</p>
-                        <p className="order-summary__grand__price">$ {grandPrice}</p>
+                        <p className="order-summary__grand__price">$ {grandPriceFormatted}</p>
                     </div>
                 
                 </div>
@@ -77,7 +75,7 @@ export default function OrderConfirmation(props) {
                                     <img src={item.image} alt={item.name} />
                                     <div className="order-summary__products__content">
                                         <p className="order-summary__products__content__name">{item.subName}</p>
-                                        <p className="order-summary__products__content__price">$ {item.price}</p>
+                                        <p className="order-summary__products__content__price">$ {item.formattedPrice}</p>
                                     </div>
                                 </div>
                                 <p className="order-summary__products__content__quantity">x{item.counter}</p>
@@ -93,7 +91,7 @@ export default function OrderConfirmation(props) {
                     </div>
                     <div className="order-summary__grand order-summary__order__active">                   
                         <p className="order-summary__grand__title">GRAND TOTAL</p>
-                        <p className="order-summary__grand__price">$ {grandPrice}</p>
+                        <p className="order-summary__grand__price">$ {grandPriceFormatted}</p>
                     </div>
             
                 </div>

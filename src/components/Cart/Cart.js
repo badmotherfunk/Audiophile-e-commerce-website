@@ -4,8 +4,11 @@ import './cart.scss'
 
 export default function Cart({cart, cartActive, setCartActive}) {
 
+    console.log(cart)
+
     const updateCart = cart.updateCart
     const [cartItem, setCartItem] = useState([])
+    const [formattedPrice, setFormattedPrice] = useState([])
     
     // Filtre les projets si le compteur et égal ou supérieur à 1
     useEffect(() => {
@@ -82,6 +85,17 @@ export default function Cart({cart, cartActive, setCartActive}) {
         document.addEventListener('mousedown', checkClickOutsideCart)
     })
 
+        // Modification de l'affichage du prix
+        useEffect(() => {       
+            let currentPrice = total.toString()
+            if(currentPrice > 999) {
+                const newPrice = `${currentPrice.slice(0, 1)}${','}${currentPrice.slice(1)}`
+                setFormattedPrice(newPrice)
+            } else if (currentPrice < 1000) {
+                setFormattedPrice(total)
+            }
+        }, [total])
+
   return (
     <div className='cart'>
 
@@ -105,7 +119,7 @@ export default function Cart({cart, cartActive, setCartActive}) {
                                             <img src={item.image} alt={item.name} />
                                             <div className="cart-products__content">
                                                 <p className="cart-products__content__title">{item.subName}</p>
-                                                <p className="cart-products__content__price">$ {item.price}</p>
+                                                <p className="cart-products__content__price">$ {item.formattedPrice}</p>
                                             </div>
                                         </div>
                                     </Link>
@@ -121,9 +135,9 @@ export default function Cart({cart, cartActive, setCartActive}) {
                             <>
                                 <div className="cart-total">
                                     <p className="cart-total__text">TOTAL</p>
-                                    <p className="cart-total__count">$ {total}</p>
+                                    <p className="cart-total__count">$ {formattedPrice}</p>
                                 </div>
-                                <Link className='cart-button-link' to={ '/checkout' } >
+                                <Link className='cart-button-link' to={ '/checkout' } state={formattedPrice} >
                                     <button className='cart-button'>CHECKOUT</button>
                                 </Link>
                             </>

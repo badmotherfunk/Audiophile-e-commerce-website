@@ -116,6 +116,8 @@ input {
     font-weight: 700;
     font-family: 'Manrope';
     margin-top: 7px;
+    caret-color: $orange-dark-color;
+    caret: 2px;
 
     @include desktop {
         padding: 25px;
