@@ -373,10 +373,10 @@ export default function Checkout() {
                                     placeholder='United States' 
                                     maxLength="25" 
                                     name="country" 
-                                    value={formValues.country || errorValidation.country} 
+                                    value={formValues.country} 
                                     onChange={handleChange}
                                     onBlur={handleValidation}
-                                    className={error.country ? "errorInput" : ""} 
+                                    className={error.country || errorValidation.country ? "errorInput" : ""} 
                                 />
                                 <p className='errors'>{error.country || errorValidation.country}</p>
                             </div>
