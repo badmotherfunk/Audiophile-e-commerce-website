@@ -68,8 +68,8 @@ export default function OrderConfirmation(props) {
                 <div className="order-summary">
 
                     <div className="order-summary__products">
-                        {storage.map((item) => (
-                            <div className="order-summary__products__container">
+                        {storage.map((item, index) => (
+                            <div key={index} className="order-summary__products__container">
                                 <div className="order-summary__products__content__container">
 
                                     <img src={item.image} alt={item.name} />
